@@ -4,6 +4,8 @@ import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.base.BasePresenter;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import rx.Observer;
@@ -34,7 +36,7 @@ public class BarbershopPresenter extends BasePresenter implements BookingContrac
         shopService.getShopList()
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
-                .subscribe(new Observer<BarbershopModel>() {
+                .subscribe(new Observer<List<BarbershopModel>>() {
                     @Override
                     public void onCompleted() {
                         view.onLoadSuccess("Data Loaded");
@@ -46,7 +48,7 @@ public class BarbershopPresenter extends BasePresenter implements BookingContrac
                     }
 
                     @Override
-                    public void onNext(BarbershopModel barbershopModel) {
+                    public void onNext(List<BarbershopModel> barbershopModel) {
                         view.onLoadData(barbershopModel);
                     }
                 });

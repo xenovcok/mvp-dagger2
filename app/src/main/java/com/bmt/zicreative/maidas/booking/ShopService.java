@@ -8,5 +8,5 @@ import rx.Observable;
 
 public interface ShopService {
     @GET("shop")
-    Observable<BarbershopModel> getShopList();
+    Observable<List<BarbershopModel>> getShopList();
 }
