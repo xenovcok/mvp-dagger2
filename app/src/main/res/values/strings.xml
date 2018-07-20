@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">maidas</string>
+    <string name="title_activity_booking">BookingActivity</string>
+</resources>
