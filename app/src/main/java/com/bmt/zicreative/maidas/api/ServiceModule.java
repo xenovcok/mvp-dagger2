@@ -1,6 +1,7 @@
 package com.bmt.zicreative.maidas.api;
 
 import com.bmt.zicreative.maidas.booking.ShopService;
+import com.bmt.zicreative.maidas.github.GithubService;
 
 import javax.inject.Singleton;
 
@@ -15,5 +16,11 @@ public class ServiceModule {
     @Singleton
     public ShopService provideShopService(Retrofit retrofit) {
         return retrofit.create(ShopService.class);
+    }
+
+    @Provides
+    @Singleton
+    public GithubService provideGithubService(Retrofit retrofit) {
+        return retrofit.create(GithubService.class);
     }
 }

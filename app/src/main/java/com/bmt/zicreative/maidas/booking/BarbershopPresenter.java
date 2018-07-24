@@ -1,5 +1,7 @@
 package com.bmt.zicreative.maidas.booking;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.base.BasePresenter;
@@ -31,6 +33,7 @@ public class BarbershopPresenter extends BasePresenter implements BookingContrac
 
     }
 
+    @SuppressLint("RxLeakedSubscription")
     @Override
     public void getData() {
         shopService.getShopList()
@@ -50,6 +53,7 @@ public class BarbershopPresenter extends BasePresenter implements BookingContrac
                     @Override
                     public void onNext(List<BarbershopModel> barbershopModel) {
                         view.onLoadData(barbershopModel);
+                        Log.d("Retrofit Data", "data received");
                     }
                 });
     }

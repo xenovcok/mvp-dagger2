@@ -23,11 +23,12 @@ import dagger.android.AndroidInjectionModule;
 
 public interface AppComponent {
 
+    void inject(PullmanApplication app);
+
     @Component.Builder
     interface Builder {
         @BindsInstance Builder application(Application application);
         AppComponent build();
     }
 
-    void inject(PullmanApplication app);
 }

@@ -1,40 +1,32 @@
 package com.bmt.zicreative.maidas.booking;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.bmt.zicreative.maidas.PullmanApplication;
 import com.bmt.zicreative.maidas.R;
-import com.bmt.zicreative.maidas.api.NetworkModule;
-import com.bmt.zicreative.maidas.api.ServiceModule;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import dagger.android.AndroidInjection;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 public class BookingActivity extends BaseActivity implements BookingContract.View {
 
+    BookAdapter bookAdapter;
+
+    List<BarbershopModel> barbershopModels;
+
     @Inject
     BarbershopPresenter barbershopPresenter;
+
+    @BindView(R.id.book_recycleview)
+    RecyclerView rvBook;
 
     @Override
     public int getLayout() {
@@ -44,6 +36,12 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     @Override
     public void setup() {
         AndroidInjection.inject(this);
+        initRecycleViewLayoutManager();
+        initAdapter();
+    }
+
+    private void initRecycleViewLayoutManager() {
+        rvBook.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -52,21 +50,23 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     }
 
     @Override
-    public void onLoadData(BarbershopModel barbershopModel) {
-        initAdapter();
+    public void onLoadData(List<BarbershopModel> barbershopModel) {
+        this.barbershopModels.addAll(barbershopModel);
+        bookAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onLoadFailed(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onLoadSuccess(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
     private void initAdapter() {
-
+        bookAdapter = new BookAdapter(barbershopModels);
+        rvBook.setAdapter(bookAdapter);
     }
 }

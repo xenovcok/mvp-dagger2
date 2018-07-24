@@ -1,24 +1,10 @@
 package com.bmt.zicreative.maidas.main;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-
 import com.bmt.zicreative.maidas.R;
-import com.bmt.zicreative.maidas.api.NetworkModule;
-import com.bmt.zicreative.maidas.api.ServiceModule;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjection;
-import retrofit2.Retrofit;
-
-public class MainActivity extends BaseActivity implements MainContract.View {
-
-    @Inject
-    MainPresenter presenter;
+public class MainActivity extends BaseActivity {
 
     @Override
     public int getLayout() {
@@ -32,11 +18,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     public BasePresenter attachPresenter() {
-        return presenter;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+        return null;
     }
 }

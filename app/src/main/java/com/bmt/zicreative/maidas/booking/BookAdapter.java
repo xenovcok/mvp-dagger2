@@ -43,7 +43,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public int getItemCount() {
-        return barbershopModel.size();
+        return 0;
     }
 
     public class BookViewHolder extends RecyclerView.ViewHolder {
