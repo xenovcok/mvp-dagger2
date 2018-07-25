@@ -1,5 +1,6 @@
 package com.bmt.zicreative.maidas.github;
 
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import com.bmt.zicreative.maidas.models.Github;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
 /**
@@ -18,8 +20,6 @@ import dagger.android.AndroidInjection;
  **/
 
 public class GithubActivity extends BaseActivity implements GithubContract.View {
-
-    private Github github;
 
     @Inject
     GithubPresenter githubPresenter;
@@ -48,10 +48,7 @@ public class GithubActivity extends BaseActivity implements GithubContract.View 
     }
 
     private void initData() {
-        tvId.setText(this.github.getId());
-        tvLogin.setText(this.github.getLogin());
-        tvName.setText(this.github.getName());
-        tvEmail.setText(this.github.getEmail());
+        githubPresenter.findAllData();
     }
 
     @Override
@@ -61,11 +58,14 @@ public class GithubActivity extends BaseActivity implements GithubContract.View 
 
     @Override
     public void onGetDataSuccess(Github github) {
-        this.github = github;
+        tvId.setText(github.getId());
+        tvName.setText(github.getName());
+        tvLogin.setText(github.getLogin());
+        tvEmail.setText(github.getEmail());
     }
 
     @Override
     public void onGetDataFailed(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Log.d("Get Data Error", message);
     }
 }

@@ -13,6 +13,6 @@ public interface GithubContract {
     }
 
     interface Presenter {
-        void onGetData();
+        void findAllData();
     }
 }

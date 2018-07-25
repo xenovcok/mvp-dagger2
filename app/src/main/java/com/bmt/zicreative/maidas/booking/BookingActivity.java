@@ -2,6 +2,7 @@ package com.bmt.zicreative.maidas.booking;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
@@ -37,7 +38,12 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     public void setup() {
         AndroidInjection.inject(this);
         initRecycleViewLayoutManager();
-        initAdapter();
+        initData();
+    }
+
+    private void initData() {
+        barbershopModels = new ArrayList<>();
+        barbershopPresenter.getData();
     }
 
     private void initRecycleViewLayoutManager() {
@@ -51,22 +57,25 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
 
     @Override
     public void onLoadData(List<BarbershopModel> barbershopModel) {
+        Log.d("tes data", barbershopModel.get(1).getName());
         this.barbershopModels.addAll(barbershopModel);
-        bookAdapter.notifyDataSetChanged();
+        initAdapter(barbershopModel);
     }
 
     @Override
     public void onLoadFailed(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void onLoadSuccess(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+       // Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
-    private void initAdapter() {
-        bookAdapter = new BookAdapter(barbershopModels);
+    private void initAdapter(List<BarbershopModel> data) {
+        Log.d("debug data : ",data.get(0).getName());
+        bookAdapter = new BookAdapter(data);
         rvBook.setAdapter(bookAdapter);
+        bookAdapter.notifyDataSetChanged();
     }
 }
