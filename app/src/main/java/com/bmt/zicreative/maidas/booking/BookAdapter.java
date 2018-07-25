@@ -1,7 +1,9 @@
 package com.bmt.zicreative.maidas.booking;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,6 +26,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     private List<BarbershopModel> barbershopModel;
 
     public BookAdapter(List<BarbershopModel> barbershopModel) {
+        this.barbershopModel = new ArrayList<>();
         this.barbershopModel = barbershopModel;
     }
 
@@ -37,22 +41,23 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int position) {
-        BarbershopModel shopData = barbershopModel.get(position);
-        bookViewHolder.itemTitleTv.setText(shopData.getName());
+        Log.d("data adapter", this.barbershopModel.get(position).getName());
+        bookViewHolder.itemTitleTv.setText(this.barbershopModel.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.barbershopModel.size();
     }
 
     public class BookViewHolder extends RecyclerView.ViewHolder {
+
         @BindView(R.id.shop_item_title)
         public TextView itemTitleTv;
 
-        public BookViewHolder(@NonNull View itemView) {
+        public BookViewHolder(View itemView) {
             super(itemView);
-
+            ButterKnife.bind(this,itemView);
         }
     }
 }

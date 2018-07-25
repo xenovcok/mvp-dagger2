@@ -15,6 +15,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
 public class BookingActivity extends BaseActivity implements BookingContract.View {
@@ -37,6 +38,7 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     @Override
     public void setup() {
         AndroidInjection.inject(this);
+        ButterKnife.bind(this);
         initRecycleViewLayoutManager();
         initData();
     }
