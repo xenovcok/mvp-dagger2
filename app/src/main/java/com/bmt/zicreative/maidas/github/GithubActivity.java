@@ -21,6 +21,8 @@ import dagger.android.AndroidInjection;
 
 public class GithubActivity extends BaseActivity implements GithubContract.View {
 
+    private Github theData;
+
     @Inject
     GithubPresenter githubPresenter;
 
@@ -35,6 +37,11 @@ public class GithubActivity extends BaseActivity implements GithubContract.View 
 
     @BindView(R.id.text_email)
     TextView tvEmail;
+
+    @Override
+    protected void bindData() {
+        //Log.d("DEBUGs", "onGetDataSuccess: "+this.theData.getId());
+    }
 
     @Override
     public int getLayout() {
@@ -58,10 +65,12 @@ public class GithubActivity extends BaseActivity implements GithubContract.View 
 
     @Override
     public void onGetDataSuccess(Github github) {
-        tvId.setText(github.getId());
-        tvName.setText(github.getName());
+        this.theData = github;
+        Log.d("DataDebug", String.valueOf(theData.getType()));
+        tvId.setText(github.getId().toString());
         tvLogin.setText(github.getLogin());
-        tvEmail.setText(github.getEmail());
+        tvName.setText(github.getName());
+        tvEmail.setText(github.getType());
     }
 
     @Override

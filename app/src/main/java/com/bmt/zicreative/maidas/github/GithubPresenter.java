@@ -25,16 +25,13 @@ public class GithubPresenter extends BasePresenter implements GithubContract.Pre
     GithubService githubService;
     GithubContract.View view;
 
-    private CompositeSubscription subscription;
-
-    private Github dataList;
+    private Github data;
 
     @Inject
     public GithubPresenter(GithubService githubService, GithubContract.View view) {
         this.githubService = githubService;
         this.view = view;
-        this.subscription = new CompositeSubscription();
-        this.dataList = new Github();
+        this.data = new Github();
     }
 
     @Override
@@ -45,25 +42,25 @@ public class GithubPresenter extends BasePresenter implements GithubContract.Pre
     @Override
     public void findAllData() {
         Log.d("onGetData : ", "executing");
-        subscription.add(githubService.getGithubData()
+        githubService.getGithubData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Github>() {
+                .subscribe(new Observer<Github>() {
                     @Override
                     public void onCompleted() {
-
+                        Log.d("onComplete : ", "OK");
+                        view.onGetDataSuccess(data);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.d("onError : ", e.getMessage());
                     }
 
                     @Override
                     public void onNext(Github github) {
-
+                        data = github;
                     }
-                })
-        );
+                });
     }
 }

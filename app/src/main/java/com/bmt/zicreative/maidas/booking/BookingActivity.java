@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,11 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
 
     @BindView(R.id.book_recycleview)
     RecyclerView rvBook;
+
+    @Override
+    protected void bindData() {
+
+    }
 
     @Override
     public int getLayout() {
@@ -71,7 +77,7 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
 
     @Override
     public void onLoadSuccess(String message) {
-       // Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+       Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
     private void initAdapter(List<BarbershopModel> data) {

@@ -52,12 +52,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     public class BookViewHolder extends RecyclerView.ViewHolder {
 
+        private Context context;
+
         @BindView(R.id.shop_item_title)
         public TextView itemTitleTv;
 
-        public BookViewHolder(View itemView) {
+        public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

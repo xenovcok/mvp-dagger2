@@ -11,7 +11,20 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/shop_item_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Dieng"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/shop_item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nganu is nganu"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/shop_item_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="malang"/>
 
     </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v7.widget.CardView>

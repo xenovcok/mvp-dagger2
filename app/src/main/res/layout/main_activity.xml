@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-        <variable
-            name="user"
-            type="com.bmt.zicreative.maidas.models.User">
+    <include layout="@layout/toolbar"/>
 
-        </variable>
-    </data>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dashboard_recycleview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{user.firstName}"/>
+        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{user.lastName}"/>
-        
-    </LinearLayout>
-</layout>
+    </android.support.v7.widget.RecyclerView>
+
+</android.support.v7.widget.LinearLayoutCompat>
