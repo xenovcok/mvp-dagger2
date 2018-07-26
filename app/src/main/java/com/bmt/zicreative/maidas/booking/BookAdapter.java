@@ -24,10 +24,12 @@ import butterknife.ButterKnife;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder>{
 
     private List<BarbershopModel> barbershopModel;
+    private Context context;
 
-    public BookAdapter(List<BarbershopModel> barbershopModel) {
+    public BookAdapter(Context context,List<BarbershopModel> barbershopModel) {
         this.barbershopModel = new ArrayList<>();
         this.barbershopModel = barbershopModel;
+        this.context = context;
     }
 
     @NonNull
@@ -51,8 +53,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     }
 
     public class BookViewHolder extends RecyclerView.ViewHolder {
-
-        private Context context;
 
         @BindView(R.id.shop_item_title)
         public TextView itemTitleTv;
