@@ -2,8 +2,7 @@ package com.bmt.zicreative.maidas.main;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.widget.LinearLayout;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
@@ -37,7 +35,7 @@ public class MainActivity extends BaseActivity {
         showMenuIconToolbar();
         setTitleToolbar("Pullman Barbershop");
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayout.HORIZONTAL, false);
         rcDashboard.setLayoutManager(gridLayoutManager);
 
         initMenuData();

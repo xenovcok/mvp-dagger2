@@ -1,6 +1,7 @@
 package com.bmt.zicreative.maidas.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.booking.BookingActivity;
+import com.bmt.zicreative.maidas.github.GithubActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     public void onBindViewHolder(MainViewHolder mainViewHolder, int position) {
         mainViewHolder.ivMenu.setImageResource(menuItem.get(position).getImage());
         mainViewHolder.tvTitle.setText(menuItem.get(position).getTitle());
+        mainViewHolder.ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, GithubActivity.class));
+            }
+        });
     }
 
     @Override

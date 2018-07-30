@@ -51,6 +51,7 @@ public class GithubActivity extends BaseActivity implements GithubContract.View 
     @Override
     public void setup() {
         AndroidInjection.inject(this);
+        setTitleToolbar("Github Data");
         initData();
     }
 
