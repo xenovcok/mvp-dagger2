@@ -82,7 +82,7 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
 
     private void initAdapter(List<BarbershopModel> data) {
         Log.d("debug data : ",data.get(0).getName());
-        bookAdapter = new BookAdapter(data);
+        bookAdapter = new BookAdapter(BookingActivity.this,data);
         rvBook.setAdapter(bookAdapter);
         bookAdapter.notifyDataSetChanged();
     }
