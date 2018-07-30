@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity {
         menuItems.add(new MenuItem(R.drawable.ic_booking, "Booking"));
         menuItems.add(new MenuItem(R.drawable.ic_service, "Servis"));
         adapter.addAll(menuItems);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
