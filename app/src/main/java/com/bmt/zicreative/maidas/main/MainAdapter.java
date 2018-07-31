@@ -53,7 +53,27 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         mainViewHolder.ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, GithubActivity.class));
+                switch (position) {
+                    case 0 :
+                        context.startActivity(new Intent(context, GithubActivity.class));
+                        break;
+                    case 1 :
+                        context.startActivity(new Intent(context, GithubActivity.class));
+                        break;
+                    case 2 :
+                        context.startActivity(new Intent(context, GithubActivity.class));
+                        break;
+                    case 3 :
+                        context.startActivity(new Intent(context, BookingActivity.class));
+                        break;
+                    case 4 :
+                        context.startActivity(new Intent(context, GithubActivity.class));
+                        break;
+                    case 5 :
+                        context.startActivity(new Intent(context, GithubActivity.class));
+                        break;
+                }
+
             }
         });
     }

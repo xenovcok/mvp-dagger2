@@ -28,7 +28,7 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     @Inject
     BarbershopPresenter barbershopPresenter;
 
-    @BindView(R.id.book_recycleview)
+    @BindView(R.id.shop_recycleview)
     RecyclerView rvBook;
 
     @Override
@@ -44,7 +44,6 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     @Override
     public void setup() {
         AndroidInjection.inject(this);
-        ButterKnife.bind(this);
         setTitleToolbar("Booking");
         initRecycleViewLayoutManager();
         initData();

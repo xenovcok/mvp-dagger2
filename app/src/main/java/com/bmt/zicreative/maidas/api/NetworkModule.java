@@ -2,7 +2,6 @@ package com.bmt.zicreative.maidas.api;
 
 import com.bmt.zicreative.maidas.Utils.Constant;
 import com.bmt.zicreative.maidas.api.config.ApiConfig;
-import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -13,7 +12,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.subscriptions.CompositeSubscription;
 
 @Module
 public class NetworkModule {
@@ -52,4 +50,5 @@ public class NetworkModule {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
+
 }

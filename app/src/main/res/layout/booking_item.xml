@@ -1,31 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="120dp"
-    android:layout_width="120dp"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
     android:layout_centerInParent="true">
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/shop_item_title"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/shop_item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dieng"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/shop_item_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="nganu is nganu"/>
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/shop_item_image"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:padding="3dp"/>
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/shop_item_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="malang"/>
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="end|center_vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/shop_item_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:text="Dieng"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/shop_item_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:text="JL. Raya Dieng 24 Malang"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/shop_item_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:textStyle="italic"
+                    android:text="Pullman no 2 dibangun pada tahun 2015"/>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"/>
 
     </android.support.v7.widget.LinearLayoutCompat>
+
 </android.support.v7.widget.CardView>

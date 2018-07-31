@@ -7,6 +7,11 @@
 
     <include layout="@layout/toolbar"/>
 
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_promo_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dashboard_recycleview"
         android:layout_width="wrap_content"
