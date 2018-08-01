@@ -1,6 +1,7 @@
 package com.bmt.zicreative.maidas.booking;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.booking.barberman.BarberActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -54,7 +56,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         bookViewHolder.tvDesc.setText(this.barbershopModel.get(position).getDescription());
         bookViewHolder.tvLocation.setText(this.barbershopModel.get(position).getAddress());
         bookViewHolder.shopItem.setOnClickListener(view -> {
-            Toast.makeText(context,String.valueOf(position),Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, BarberActivity.class);
+            intent.putExtra("shop", this.barbershopModel.get(position).getId());
+            context.startActivity(intent);
         });
     }
 

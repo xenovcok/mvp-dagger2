@@ -24,6 +24,10 @@
             android:name=".booking.BookingActivity"
             android:label="@string/title_activity_booking">
         </activity>
+        <activity
+            android:name=".booking.barberman.BarberActivity"
+            android:label="BarberActivity">
+        </activity>
     </application>
 
 </manifest>

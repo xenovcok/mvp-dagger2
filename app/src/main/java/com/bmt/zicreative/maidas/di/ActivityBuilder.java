@@ -3,6 +3,8 @@ package com.bmt.zicreative.maidas.di;
 import com.bmt.zicreative.maidas.api.NetworkModule;
 import com.bmt.zicreative.maidas.booking.BarbershopModule;
 import com.bmt.zicreative.maidas.booking.BookingActivity;
+import com.bmt.zicreative.maidas.booking.barberman.BarberActivity;
+import com.bmt.zicreative.maidas.booking.barberman.BarberModule;
 import com.bmt.zicreative.maidas.github.GithubActivity;
 import com.bmt.zicreative.maidas.github.GithubModule;
 import com.bmt.zicreative.maidas.main.MainActivity;
@@ -21,4 +23,7 @@ public abstract  class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {NetworkModule.class, GithubModule.class})
     abstract GithubActivity bindGithubActivity();
+
+    @ContributesAndroidInjector(modules = {NetworkModule.class, BarberModule.class})
+    abstract BarberActivity bindBarberActivity();
 }
