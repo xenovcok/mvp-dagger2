@@ -1,13 +1,18 @@
 package com.bmt.zicreative.maidas.booking.barberman;
 
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.booking.BookingActivity;
 import com.bmt.zicreative.maidas.models.Barber;
 
 import java.util.ArrayList;
@@ -43,6 +48,7 @@ public class BarberActivity extends BaseActivity implements BarberContract.View 
         return R.layout.barber_activity;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void setup() {
         AndroidInjection.inject(this);
@@ -62,6 +68,17 @@ public class BarberActivity extends BaseActivity implements BarberContract.View 
         this.barberList.addAll(barber);
         Log.d("BARBER DATA : ", this.barberList.get(1).getName());
         initAdapter();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == android.R.id.home) {
+            startActivity(new Intent(BarberActivity.this, BookingActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

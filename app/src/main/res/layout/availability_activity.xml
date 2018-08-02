@@ -17,11 +17,98 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/datepicker_recycleview"
+   <android.support.v7.widget.AppCompatEditText
+       android:id="@+id/tv_avai_date"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="26px"
+       android:padding="10dp"
+       android:hint="Pilih tanggal"/>
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Waktu"
+        android:layout_gravity="center"/>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:text="10.00 - 11.00"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="11.00 - 12.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="12.00 - 13.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="13.00 - 14.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="14.00 - 15.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="15.00 - 16.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="16.00 - 17.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="17.00 - 18.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v7.widget.CardView>
+
+
 
 </android.support.v7.widget.LinearLayoutCompat>

@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
 
@@ -75,15 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.item_info) {
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

@@ -28,6 +28,10 @@
             android:name=".booking.barberman.BarberActivity"
             android:label="BarberActivity">
         </activity>
+        <activity
+            android:name=".booking.avaliability.AvailabilityActivity"
+            android:label="AvailabilityActivity">
+        </activity>
     </application>
 
 </manifest>
