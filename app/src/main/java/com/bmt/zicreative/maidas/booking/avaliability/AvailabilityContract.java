@@ -15,6 +15,6 @@ public interface AvailabilityContract {
     }
 
     interface Presenter {
-        void getData();
+        void getOrderDataByDate(String years, String month);
     }
 }

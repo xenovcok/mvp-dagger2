@@ -1,6 +1,7 @@
 package com.bmt.zicreative.maidas.booking;
 
 import com.bmt.zicreative.maidas.models.Barber;
+import com.bmt.zicreative.maidas.models.BookingOrder;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface ShopService {
 
     @GET("users/role/{role_id}")
     Observable<List<Barber>> getUserByRole(@Path("role_id") String roleId);
+
+    @GET("orderlist/{years}/{month}/dates")
+    Observable<List<BookingOrder>> getOrderByDate(@Path("years") String years, @Path("month") String month);
 }
