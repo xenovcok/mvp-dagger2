@@ -20,13 +20,15 @@
    <android.support.v7.widget.AppCompatEditText
        android:id="@+id/tv_avai_date"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:textSize="26px"
-       android:padding="10dp"
+       android:layout_height="32dp"
+       android:textSize="29px"
+       android:padding="7dip"
+       android:focusable="false"
        android:hint="Pilih tanggal"/>
 
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tvAvaiTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
