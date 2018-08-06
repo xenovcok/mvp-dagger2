@@ -1,6 +1,10 @@
 package com.bmt.zicreative.maidas.booking.avaliability;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.support.v7.widget.AppCompatButton;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -47,6 +51,30 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     @BindView(R.id.tv_avai_date)
     EditText etDate;
 
+    @BindView(R.id.btn1)
+    AppCompatButton btn1;
+
+    @BindView(R.id.btn2)
+    AppCompatButton btn2;
+
+    @BindView(R.id.btn3)
+    AppCompatButton btn3;
+
+    @BindView(R.id.btn4)
+    AppCompatButton btn4;
+
+    @BindView(R.id.btn5)
+    AppCompatButton btn5;
+
+    @BindView(R.id.btn6)
+    AppCompatButton btn6;
+
+    @BindView(R.id.btn7)
+    AppCompatButton btn7;
+
+    @BindView(R.id.btn8)
+    AppCompatButton btn8;
+
     @Inject
     AvailabilityPresenter availabilityPresenter;
 
@@ -66,10 +94,57 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         showBackIconToolbar(true);
         setTitleToolbar("Available Date");
         initData();
+        initUI();
 
         etDate.setOnClickListener(view -> {
             onClickPopup();
         });
+
+        etDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d("DEBUG","afterTextChanged: "+editable.toString());
+                enableButton(btn1);
+            }
+        });
+    }
+
+
+
+    private void disableButton(AppCompatButton btn) {
+        btn.setEnabled(false);
+        btn.setBackgroundResource(R.color.grey);
+    }
+
+    private void enableButton(AppCompatButton btn) {
+        btn.setEnabled(true);
+        btn.setBackgroundResource(R.color.colorPrimary);
+    }
+
+    private void checkAvalilableHours() {
+
+    }
+
+    private void initUI() {
+        disableButton(findViewById(R.id.btn1));
+        disableButton(findViewById(R.id.btn2));
+        disableButton(findViewById(R.id.btn3));
+        disableButton(findViewById(R.id.btn4));
+        disableButton(findViewById(R.id.btn5));
+        disableButton(findViewById(R.id.btn6));
+        disableButton(findViewById(R.id.btn7));
+        disableButton(findViewById(R.id.btn8));
+
     }
 
     private void onClickPopup() {
@@ -144,6 +219,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         return calendar;
     }
 
+    /*
     private Calendar dateToCalendar (String date) {
         Calendar c = new GregorianCalendar();
         c.setTime(ISO8601formatter(date));
@@ -159,6 +235,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         }
         return parsed;
     }
+    */
 
     private String monthParser(String month) {
         String parsed = "";

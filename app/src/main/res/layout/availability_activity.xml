@@ -45,13 +45,16 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn1"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
-                android:clickable="false"
-                android:text="10.00 - 11.00"/>
+                android:text="10.00 - 11.00"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"/>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
@@ -60,6 +63,7 @@
                 android:background="@color/colorPrimary"/>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn3"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
@@ -68,6 +72,7 @@
                 android:background="@color/colorPrimary"/>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn4"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
@@ -76,6 +81,7 @@
                 android:background="@color/colorPrimary"/>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn5"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
@@ -84,6 +90,7 @@
                 android:background="@color/colorPrimary"/>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn6"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
@@ -92,6 +99,7 @@
                 android:background="@color/colorPrimary"/>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn7"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
@@ -100,6 +108,7 @@
                 android:background="@color/colorPrimary"/>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn8"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"

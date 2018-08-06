@@ -58,4 +58,9 @@ public class AvailabilityPresenter extends BasePresenter implements Availability
                     }
                 });
     }
+
+    @Override
+    public void checkAvailableDate(String date) {
+
+    }
 }
