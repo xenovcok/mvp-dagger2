@@ -60,7 +60,25 @@ public class AvailabilityPresenter extends BasePresenter implements Availability
     }
 
     @Override
-    public void checkAvailableDate(String date) {
+    public void checkAvailableDate(String year, String month, String day) {
+        shopService.getOrderByDay(year, month, day)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<BookingOrder>>() {
+                    @Override
+                    public void onCompleted() {
+                        view.onGetDataSuccess(orderData);
+                    }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        view.onGetDataFailed(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(List<BookingOrder> bookingOrders) {
+                        orderData = bookingOrders;
+                    }
+                });
     }
 }

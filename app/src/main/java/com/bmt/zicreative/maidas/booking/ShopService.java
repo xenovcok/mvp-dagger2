@@ -19,4 +19,7 @@ public interface ShopService {
 
     @GET("orderlist/{years}/{month}/dates")
     Observable<List<BookingOrder>> getOrderByDate(@Path("years") String years, @Path("month") String month);
+
+    @GET("orderlist/{year}/{month}/{day}/day")
+    Observable<List<BookingOrder>> getOrderByDay(@Path("year") String year, @Path("month") String month, @Path("day") String day);
 }

@@ -41,8 +41,15 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     String years;
     String month;
 
+    String bookYear;
+    String bookMonth;
+    String bookDay;
+    String bookTime;
+
     Calendar nowDate;
     Calendar bookingDate;
+    String saveBookingDate;
+
     DatePickerDialog datePickerDialog;
 
     @BindView(R.id.tvAvaiTitle)
@@ -100,6 +107,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
             onClickPopup();
         });
 
+
         etDate.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -113,8 +121,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Log.d("DEBUG","afterTextChanged: "+editable.toString());
-                enableButton(btn1);
+               //availabilityPresenter.checkAvailableDate();
             }
         });
     }
@@ -131,11 +138,8 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         btn.setBackgroundResource(R.color.colorPrimary);
     }
 
-    private void checkAvalilableHours() {
-
-    }
-
     private void initUI() {
+
         disableButton(findViewById(R.id.btn1));
         disableButton(findViewById(R.id.btn2));
         disableButton(findViewById(R.id.btn3));
@@ -147,6 +151,47 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
     }
 
+    private void setEnableButton() {
+        enableButton(findViewById(R.id.btn1));
+        enableButton(findViewById(R.id.btn2));
+        enableButton(findViewById(R.id.btn3));
+        enableButton(findViewById(R.id.btn4));
+        enableButton(findViewById(R.id.btn5));
+        enableButton(findViewById(R.id.btn6));
+        enableButton(findViewById(R.id.btn7));
+        enableButton(findViewById(R.id.btn8));
+    }
+
+    private void setUIButton(int tgl) {
+        setEnableButton();
+        switch (tgl) {
+            case 10:
+                disableButton(findViewById(R.id.btn1));
+                break;
+            case 11:
+                disableButton(findViewById(R.id.btn2));
+                break;
+            case 12:
+                disableButton(findViewById(R.id.btn3));
+                break;
+            case 1:
+                disableButton(findViewById(R.id.btn4));
+                break;
+            case 2:
+                disableButton(findViewById(R.id.btn5));
+                break;
+            case 3:
+                disableButton(findViewById(R.id.btn6));
+                break;
+            case 4:
+                disableButton(findViewById(R.id.btn7));
+                break;
+            case 5:
+                disableButton(findViewById(R.id.btn8));
+                break;
+        }
+    }
+
     private void onClickPopup() {
         Calendar calendar = Calendar.getInstance();
 
@@ -154,11 +199,36 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat bookDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 if(calendar.get(Calendar.DAY_OF_MONTH) > dayOfMonth){
                     Toast.makeText(AvailabilityActivity.this, "Invalid Date", Toast.LENGTH_SHORT).show();
                 }else{
                     etDate.setText(sdf.format(newDate.getTime()));
+                    saveBookingDate = bookDateFormat.format(newDate.getTime());
+
+                    Log.d("DEBUG", "Saved bookingDate : "+saveBookingDate);
+
+                    Date tempDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(saveBookingDate, new ParsePosition(0));
+                    Calendar tempCalendar = new GregorianCalendar();
+                    tempCalendar.setTime(tempDate);
+
+                    if(tempCalendar.get(Calendar.MONTH) < 10) {
+                        bookMonth = "0"+String.valueOf(tempCalendar.get(Calendar.MONTH));
+                    }else{
+                        bookMonth = String.valueOf(tempCalendar.get(Calendar.MONTH));
+                    }
+
+                    if(tempCalendar.get(Calendar.DAY_OF_MONTH) < 10) {
+                        bookDay = "0"+String.valueOf(tempCalendar.get(Calendar.DAY_OF_MONTH));
+                    }else{
+                        bookDay = String.valueOf(tempCalendar.get(Calendar.DAY_OF_MONTH));
+                    }
+
+                    bookYear = String.valueOf(tempCalendar.get(Calendar.YEAR));
+
+
+                    Log.d("DEBUG", "Year : "+bookYear+" Month : "+bookMonth+" Day : "+bookDay);
                 }
 
             }
@@ -171,13 +241,15 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         if(datalist.isEmpty()) {
             Log.d("DEBUG", "Data List Empty");
         }else {
-            this.tvAvaiTitle.setText(datalist.get(0).getBookForDate());
             bookingDate = new GregorianCalendar();
             SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            Date d = sd.parse(datalist.get(0).getBookForDate(), new ParsePosition(0));
-            bookingDate.setTime(d);
-            //Log.d("DEBUG", "setData: Tahun "+bookingDate.toString());
-            //Log.d("DEBUG", "setData: Tahun "+ bookingDate.get(Calendar.YEAR)+" Jam "+bookingDate.get(Calendar.HOUR));
+            for (int i = 0; i < datalist.size(); i++) {
+                Date d = sd.parse(datalist.get(i).getBookForDate(), new ParsePosition(0));
+                bookingDate.setTime(d);
+                setUIButton(bookingDate.get(Calendar.HOUR));
+                //Log.d("DEBUG", "setData: Tahun "+bookingDate.toString());
+                //Log.d("DEBUG", "setData: Tahun "+ bookingDate.get(Calendar.YEAR)+" Jam "+bookingDate.get(Calendar.HOUR));
+            }
         }
     }
 
@@ -208,8 +280,6 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
        // Log.d("DEBUG", " Tahun: "+years);
        // Log.d("DEBUG", " Bulan: "+month);
-
-        availabilityPresenter.getOrderDataByDate("2018", "05");
     }
 
     private Calendar getNowDate() {
