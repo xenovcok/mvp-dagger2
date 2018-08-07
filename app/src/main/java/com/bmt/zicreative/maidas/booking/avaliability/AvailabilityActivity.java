@@ -106,24 +106,6 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         etDate.setOnClickListener(view -> {
             onClickPopup();
         });
-
-
-        etDate.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-               //availabilityPresenter.checkAvailableDate();
-            }
-        });
     }
 
 
@@ -227,6 +209,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
                     bookYear = String.valueOf(tempCalendar.get(Calendar.YEAR));
 
+                    availabilityPresenter.checkAvailableDate(bookYear, "05", "16");
 
                     Log.d("DEBUG", "Year : "+bookYear+" Month : "+bookMonth+" Day : "+bookDay);
                 }
@@ -248,7 +231,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
                 bookingDate.setTime(d);
                 setUIButton(bookingDate.get(Calendar.HOUR));
                 //Log.d("DEBUG", "setData: Tahun "+bookingDate.toString());
-                //Log.d("DEBUG", "setData: Tahun "+ bookingDate.get(Calendar.YEAR)+" Jam "+bookingDate.get(Calendar.HOUR));
+                Log.d("DEBUG", "setData: Tahun "+ bookingDate.get(Calendar.YEAR)+" Jam "+bookingDate.get(Calendar.HOUR));
             }
         }
     }
@@ -307,6 +290,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     }
     */
 
+    /*
     private String monthParser(String month) {
         String parsed = "";
         switch (month) {
@@ -341,4 +325,5 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
         return parsed;
     }
+    */
 }
