@@ -82,6 +82,9 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     @BindView(R.id.btn8)
     AppCompatButton btn8;
 
+    @BindView(R.id.btn9)
+    AppCompatButton btn9;
+
     @Inject
     AvailabilityPresenter availabilityPresenter;
 
@@ -130,6 +133,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         disableButton(findViewById(R.id.btn6));
         disableButton(findViewById(R.id.btn7));
         disableButton(findViewById(R.id.btn8));
+        disableButton(findViewById(R.id.btn9));
 
     }
 
@@ -142,34 +146,38 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         enableButton(findViewById(R.id.btn6));
         enableButton(findViewById(R.id.btn7));
         enableButton(findViewById(R.id.btn8));
+        enableButton(findViewById(R.id.btn9));
+
     }
 
     private void setUIButton(int tgl) {
-        setEnableButton();
         switch (tgl) {
-            case 10:
+            case 3:
                 disableButton(findViewById(R.id.btn1));
                 break;
-            case 11:
+            case 4:
                 disableButton(findViewById(R.id.btn2));
                 break;
-            case 12:
+            case 5:
                 disableButton(findViewById(R.id.btn3));
                 break;
-            case 1:
+            case 6:
                 disableButton(findViewById(R.id.btn4));
                 break;
-            case 2:
+            case 7:
                 disableButton(findViewById(R.id.btn5));
                 break;
-            case 3:
+            case 8:
                 disableButton(findViewById(R.id.btn6));
                 break;
-            case 4:
+            case 9:
                 disableButton(findViewById(R.id.btn7));
                 break;
-            case 5:
+            case 10:
                 disableButton(findViewById(R.id.btn8));
+                break;
+            case 11:
+                disableButton(findViewById(R.id.btn9));
                 break;
         }
     }
@@ -196,7 +204,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
                     tempCalendar.setTime(tempDate);
 
                     if(tempCalendar.get(Calendar.MONTH) < 10) {
-                        bookMonth = "0"+String.valueOf(tempCalendar.get(Calendar.MONTH));
+                        bookMonth = "0"+String.valueOf(tempCalendar.get(Calendar.MONTH)+1);
                     }else{
                         bookMonth = String.valueOf(tempCalendar.get(Calendar.MONTH));
                     }
@@ -209,9 +217,11 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
                     bookYear = String.valueOf(tempCalendar.get(Calendar.YEAR));
 
-                    availabilityPresenter.checkAvailableDate(bookYear, "05", "16");
+                    setEnableButton();
 
                     Log.d("DEBUG", "Year : "+bookYear+" Month : "+bookMonth+" Day : "+bookDay);
+
+                    availabilityPresenter.checkAvailableDate(bookYear, bookMonth, bookDay);
                 }
 
             }
