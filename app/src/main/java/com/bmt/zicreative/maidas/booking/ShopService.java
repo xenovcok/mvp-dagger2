@@ -2,6 +2,7 @@ package com.bmt.zicreative.maidas.booking;
 
 import com.bmt.zicreative.maidas.models.Barber;
 import com.bmt.zicreative.maidas.models.BookingOrder;
+import com.bmt.zicreative.maidas.models.Product;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface ShopService {
 
     @GET("orderlist/{year}/{month}/{day}/day")
     Observable<List<BookingOrder>> getOrderByDay(@Path("year") String year, @Path("month") String month, @Path("day") String day);
+
+    @GET("products")
+    Observable<List<Product>> getAllProducts();
 }

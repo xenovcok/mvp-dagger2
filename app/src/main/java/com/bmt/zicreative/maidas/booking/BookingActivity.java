@@ -45,6 +45,7 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     public void setup() {
         AndroidInjection.inject(this);
         setTitleToolbar("Booking");
+        showBackIconToolbar(true);
         initRecycleViewLayoutManager();
         initData();
     }

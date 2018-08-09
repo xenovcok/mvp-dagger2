@@ -1,0 +1,88 @@
+package com.bmt.zicreative.maidas.booking.service;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.base.BaseActivity;
+import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.models.Product;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import dagger.android.AndroidInjection;
+
+/**
+ * Created By Herwin DJ on 8/9/2018
+ **/
+
+public class ServiceActivity extends BaseActivity implements ServiceContract.View {
+
+    ServiceItemAdapter adapter;
+
+    @BindView(R.id.service_recycleview)
+    RecyclerView rvService;
+
+    @Inject
+    ServicePresenter servicePresenter;
+
+    List<Product> productList;
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.service_activity;
+    }
+
+    @Override
+    public void setup() {
+        AndroidInjection.inject(this);
+        showBackIconToolbar(true);
+        setTitleToolbar("Pilih Layanan");
+        initRecycleViewManager();
+        initData();
+    }
+
+    private void initRecycleViewManager() {
+        rvService.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void initData() {
+        servicePresenter.findAllProducts();
+    }
+
+    private void initView() {
+        Log.d("DEBUG", "initData: "+productList.get(0).getName());
+        adapter = new ServiceItemAdapter(ServiceActivity.this, this.productList);
+        rvService.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public BasePresenter attachPresenter() {
+        return servicePresenter;
+    }
+
+    @Override
+    public void onGetDataSuccess(List<Product> productList) {
+        this.productList = new ArrayList<>();
+        this.productList.addAll(productList);
+        initView();
+    }
+
+    @Override
+    public void onGetDataFailed(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+}

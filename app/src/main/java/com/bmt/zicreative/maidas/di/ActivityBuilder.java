@@ -7,6 +7,8 @@ import com.bmt.zicreative.maidas.booking.avaliability.AvailabilityActivity;
 import com.bmt.zicreative.maidas.booking.avaliability.AvailabilityModule;
 import com.bmt.zicreative.maidas.booking.barberman.BarberActivity;
 import com.bmt.zicreative.maidas.booking.barberman.BarberModule;
+import com.bmt.zicreative.maidas.booking.service.ItemServiceModule;
+import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
 import com.bmt.zicreative.maidas.github.GithubActivity;
 import com.bmt.zicreative.maidas.github.GithubModule;
 import com.bmt.zicreative.maidas.main.MainActivity;
@@ -31,4 +33,7 @@ public abstract  class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {NetworkModule.class, AvailabilityModule.class})
     abstract AvailabilityActivity bindAvailabiliyActivity();
+
+    @ContributesAndroidInjector(modules = {NetworkModule.class, ItemServiceModule.class})
+    abstract ServiceActivity bindServiceActivity();
 }

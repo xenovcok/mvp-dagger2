@@ -1,6 +1,7 @@
 package com.bmt.zicreative.maidas.booking.avaliability;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatButton;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
 import com.bmt.zicreative.maidas.models.BookingOrder;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 
@@ -44,7 +46,6 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     String bookYear;
     String bookMonth;
     String bookDay;
-    String bookTime;
 
     Calendar nowDate;
     Calendar bookingDate;
@@ -126,6 +127,12 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     private void initUI() {
 
         disableButton(findViewById(R.id.btn1));
+        btn1.setOnClickListener(view -> {
+            Intent i = new Intent(AvailabilityActivity.this, ServiceActivity.class);
+            Log.d("DEBUG", "saved Booking date : "+saveBookingDate.substring(0, 10)+"T10:00:000Z");
+            startActivity(i);
+        });
+
         disableButton(findViewById(R.id.btn2));
         disableButton(findViewById(R.id.btn3));
         disableButton(findViewById(R.id.btn4));
@@ -254,6 +261,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     @Override
     public void onGetDataSuccess(List<BookingOrder> orderData) {
         //Log.d("DEBUG", "orderData size "+orderData.size());
+        this.datalist.clear();
         this.datalist.addAll(orderData);
         setData();
     }
