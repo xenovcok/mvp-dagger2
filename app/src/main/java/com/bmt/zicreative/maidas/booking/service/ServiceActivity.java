@@ -1,16 +1,20 @@
 package com.bmt.zicreative.maidas.booking.service;
 
+import android.content.Intent;
+import android.os.Parcelable;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.booking.detail.DetailActivity;
 import com.bmt.zicreative.maidas.models.Product;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,17 +27,23 @@ import dagger.android.AndroidInjection;
  * Created By Herwin DJ on 8/9/2018
  **/
 
-public class ServiceActivity extends BaseActivity implements ServiceContract.View {
+public class ServiceActivity extends BaseActivity implements ServiceContract.View, ServiceItemAdapter.CheckedData {
 
     ServiceItemAdapter adapter;
 
     @BindView(R.id.service_recycleview)
     RecyclerView rvService;
 
+    @BindView(R.id.btn_book)
+    AppCompatButton btnBook;
+
     @Inject
     ServicePresenter servicePresenter;
 
     List<Product> productList;
+    List<Product> checkedItem;
+    ArrayList<String> itemIdList;
+
 
     @Override
     protected void bindData() {
@@ -42,7 +52,7 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
 
     @Override
     public int getLayout() {
-        return R.layout.service_activity;
+        return R.layout.activity_service;
     }
 
     @Override
@@ -52,6 +62,7 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
         setTitleToolbar("Pilih Layanan");
         initRecycleViewManager();
         initData();
+
     }
 
     private void initRecycleViewManager() {
@@ -63,10 +74,17 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
     }
 
     private void initView() {
-        Log.d("DEBUG", "initData: "+productList.get(0).getName());
+        Log.d("DEBUG", "initData: " + productList.get(0).getName());
         adapter = new ServiceItemAdapter(ServiceActivity.this, this.productList);
         rvService.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        adapter.setListener(this);
+        btnBook.setOnClickListener(view -> {
+            Intent i = new Intent(ServiceActivity.this, DetailActivity.class);
+            Log.d("DEBUG","Data From Adapter : "+checkedItem.size());
+            i.putStringArrayListExtra("serviceItem", itemIdList);
+            startActivity(i);
+        });
     }
 
     @Override
@@ -77,6 +95,8 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
     @Override
     public void onGetDataSuccess(List<Product> productList) {
         this.productList = new ArrayList<>();
+        this.checkedItem = new ArrayList<>();
+        this.itemIdList = new ArrayList<>();
         this.productList.addAll(productList);
         initView();
     }
@@ -84,5 +104,10 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
     @Override
     public void onGetDataFailed(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onCheckboxClick(List<Product> product) {
+       this.checkedItem = product;
     }
 }

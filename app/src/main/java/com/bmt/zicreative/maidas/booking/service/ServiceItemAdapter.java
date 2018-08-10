@@ -3,10 +3,12 @@ package com.bmt.zicreative.maidas.booking.service;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
@@ -14,7 +16,6 @@ import com.bmt.zicreative.maidas.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +27,9 @@ import butterknife.ButterKnife;
 public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.ServiceViewHolder>{
 
     Context context;
-    List<Product> productList;
+    private List<Product> productList;
+    private List<Product> checkedBox = new ArrayList<>();
+    private CheckedData checkedData;
 
     public ServiceItemAdapter(Context context, List<Product> productList) {
         this.productList = new ArrayList<>();
@@ -37,7 +40,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
     @NonNull
     @Override
     public ServiceItemAdapter.ServiceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.service_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_service, parent, false);
         return new ServiceViewHolder(itemView);
     }
 
@@ -47,12 +50,26 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         holder.tvItemName.setText(this.productList.get(position).getName());
         holder.tvPrice.setText(this.productList.get(position).getPrice());
         holder.cbItem.setChecked(false);
+        holder.cbItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    checkedBox.add(productList.get(position));
+                }else{
+                    checkedBox.remove(productList.get(position));
+                }
+                Log.d("DEBUG", "checkedbox size : "+checkedBox.size());
+                checkedData.onCheckboxClick(checkedBox);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return this.productList.size();
     }
+
+
 
     public class ServiceViewHolder extends RecyclerView.ViewHolder {
 
@@ -72,5 +89,13 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public void setListener(CheckedData checkedData) {
+        this.checkedData = checkedData;
+    }
+
+    public interface CheckedData {
+        void onCheckboxClick(List<Product> product);
     }
 }

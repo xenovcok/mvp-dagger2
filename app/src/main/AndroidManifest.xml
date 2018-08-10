@@ -36,6 +36,10 @@
             android:name=".booking.service.ServiceActivity"
             android:label="ServiceActivity">
         </activity>
+        <activity
+            android:name=".booking.detail.DetailActivity"
+            android:label="DetailActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -29,6 +29,7 @@ public class ServicePresenter extends BasePresenter implements ServiceContract.P
         this.shopService = shopService;
         this.view = view;
         productList = new ArrayList<>();
+
     }
 
     @Override
