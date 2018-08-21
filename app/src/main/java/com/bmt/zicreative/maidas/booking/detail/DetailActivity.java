@@ -1,5 +1,6 @@
 package com.bmt.zicreative.maidas.booking.detail;
 
+import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 
@@ -15,12 +16,13 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     public int getLayout() {
-        return 0;
+        return R.layout.activity_booking_detail;
     }
 
     @Override
     public void setup() {
-
+        showBackIconToolbar(true);
+        setTitleToolbar("Confirm Booking");
     }
 
     @Override

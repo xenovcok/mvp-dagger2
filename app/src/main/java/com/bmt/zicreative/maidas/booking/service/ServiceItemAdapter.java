@@ -1,6 +1,7 @@
 package com.bmt.zicreative.maidas.booking.service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,9 +31,11 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
     private List<Product> productList;
     private List<Product> checkedBox = new ArrayList<>();
     private CheckedData checkedData;
+    private int total;
 
     public ServiceItemAdapter(Context context, List<Product> productList) {
         this.productList = new ArrayList<>();
+        this.total = 0;
         this.context = context;
         this.productList = productList;
     }
@@ -55,10 +58,13 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
                     checkedBox.add(productList.get(position));
+                    total += Integer.valueOf(productList.get(position).getPrice());
                 }else{
                     checkedBox.remove(productList.get(position));
+                    total -= Integer.valueOf(productList.get(position).getPrice());
                 }
                 Log.d("DEBUG", "checkedbox size : "+checkedBox.size());
+                Log.d("DEBUG", "Total : "+total);
                 checkedData.onCheckboxClick(checkedBox);
             }
         });
