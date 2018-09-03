@@ -65,7 +65,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
                 }
                 Log.d("DEBUG", "checkedbox size : "+checkedBox.size());
                 Log.d("DEBUG", "Total : "+total);
-                checkedData.onCheckboxClick(checkedBox);
+                checkedData.onCheckboxClick(checkedBox, total);
             }
         });
     }
@@ -102,6 +102,6 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
     }
 
     public interface CheckedData {
-        void onCheckboxClick(List<Product> product);
+        void onCheckboxClick(List<Product> product,int total);
     }
 }

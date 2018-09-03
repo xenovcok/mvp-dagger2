@@ -1,5 +1,6 @@
 package com.bmt.zicreative.maidas.booking.avaliability;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -130,6 +131,11 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         btn1.setOnClickListener(view -> {
             Intent i = new Intent(AvailabilityActivity.this, ServiceActivity.class);
             Log.d("DEBUG", "saved Booking date : "+saveBookingDate.substring(0, 10)+"T10:00:000Z");
+            Intent p = getIntent();
+            Log.d("DEBUG", "shopId: "+p.getStringExtra("shopId"));
+            i.putExtra("shopId", p.getStringExtra("shopId"));
+            i.putExtra("bookingDate", saveBookingDate.substring(0, 10)+"T10:00:000Z");
+            i.putExtra("barberId", p.getStringExtra("barberId"));
             startActivity(i);
         });
 

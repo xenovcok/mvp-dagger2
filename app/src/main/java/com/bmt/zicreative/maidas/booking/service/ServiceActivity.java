@@ -42,12 +42,12 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
 
     List<Product> productList;
     List<Product> checkedItem;
+    int total;
     ArrayList<String> itemIdList;
 
 
     @Override
     protected void bindData() {
-
     }
 
     @Override
@@ -74,15 +74,22 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
     }
 
     private void initView() {
-        Log.d("DEBUG", "initData: " + productList.get(0).getName());
+        Log.d("DEBUG", "initData: " + productList.get(0).getId());
         adapter = new ServiceItemAdapter(ServiceActivity.this, this.productList);
         rvService.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setListener(this);
         btnBook.setOnClickListener(view -> {
+            Intent p = getIntent();
+            setItemIdList();
             Intent i = new Intent(ServiceActivity.this, DetailActivity.class);
             Log.d("DEBUG","Data From Adapter : "+checkedItem.size());
             i.putStringArrayListExtra("serviceItem", itemIdList);
+            i.putExtra("barberId", p.getStringExtra("barberId"));
+            i.putExtra("shopId", p.getStringExtra("shopId"));
+            i.putExtra("bookingDate", p.getStringExtra("bookingDate"));
+            i.putExtra("total", total);
+            Log.d("DEBUG","Total from Activity : "+total);
             startActivity(i);
         });
     }
@@ -107,7 +114,16 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
     }
 
     @Override
-    public void onCheckboxClick(List<Product> product) {
+    public void onCheckboxClick(List<Product> product, int total) {
        this.checkedItem = product;
+       this.total = total;
+    }
+
+    private void setItemIdList() {
+        for(int i = 0;i < checkedItem.size();i++) {
+            itemIdList.add(checkedItem.get(i).getId());
+            Log.d("DEBUG", "setItemIdList: "+checkedItem.get(i).getId());
+        }
+
     }
 }

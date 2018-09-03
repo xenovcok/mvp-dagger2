@@ -1,11 +1,13 @@
 package com.bmt.zicreative.maidas.booking.barberman;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +55,10 @@ public class BarberAdapter extends RecyclerView.Adapter<BarberAdapter.BarberView
         holder.tvDesc.setText("Experienced barber from Pullman");
         holder.rowBarber.setOnClickListener(view -> {
             //showSnackbar(view, String.valueOf(barberList.get(position).getName()));
+            Intent a = ((Activity) context).getIntent();
             Intent i = new Intent(context, AvailabilityActivity.class);
             i.putExtra("barberId", barberList.get(position).getId());
+            i.putExtra("shopId", a.getStringExtra("shop"));
             context.startActivity(i);
         });
     }
