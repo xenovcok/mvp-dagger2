@@ -1,5 +1,7 @@
 package com.bmt.zicreative.maidas.booking;
 
+import com.bmt.zicreative.maidas.api.ApiResponse;
+import com.bmt.zicreative.maidas.booking.detail.OrderModel;
 import com.bmt.zicreative.maidas.models.Barber;
 import com.bmt.zicreative.maidas.models.BookingOrder;
 import com.bmt.zicreative.maidas.models.Product;
@@ -7,7 +9,9 @@ import com.bmt.zicreative.maidas.models.Product;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -26,4 +30,7 @@ public interface ShopService {
 
     @GET("products")
     Observable<List<Product>> getAllProducts();
+
+    @POST("orderlist")
+    Observable<ApiResponse> addNewOrder(@Body OrderModel orderModel);
 }
