@@ -16,9 +16,12 @@ import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.models.Product;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.TimeZone;
 
 import javax.inject.Inject;
 
@@ -74,7 +77,7 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
             data = new OrderModel();
             data.setTotal(String.valueOf(a.getIntExtra("total", 0)));
             data.setUserId("andi@gmail.com");
-            data.setCreatedAt(String.valueOf(new Date()));
+            data.setCreatedAt(getNowDate());
             data.setBarbermanId(a.getStringExtra("barberId"));
             data.setHeldDate(a.getStringExtra("bookingDate"));
             //data.setProcessedAt("");
@@ -142,5 +145,12 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         Random rand = new Random();
         int num = rand.nextInt(9000000) + 1000000;
         return String.valueOf(num);
+    }
+
+    private String getNowDate() {
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+        df.setTimeZone(tz);
+        return df.format(new Date());
     }
 }
