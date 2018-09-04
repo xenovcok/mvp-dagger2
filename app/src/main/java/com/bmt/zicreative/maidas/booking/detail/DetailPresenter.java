@@ -5,10 +5,15 @@ import android.util.Log;
 import com.bmt.zicreative.maidas.api.ApiResponse;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.booking.ShopService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
 
 import javax.inject.Inject;
 
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -43,7 +48,23 @@ public class DetailPresenter extends BasePresenter implements DetailContract.Pre
         Log.d("DEBUG", "Response: "+apiResponse.getMessage());
     }
 
-    private void handleError(Throwable throwable) {
-        Log.d("DEBUG", "handleError: "+throwable.getMessage());
+    private void handleError(Throwable error) {
+        Log.d("DEBUG", "handleError: "+error.getMessage());
+        if (error instanceof HttpException) {
+
+            Gson gson = new GsonBuilder().create();
+
+            try {
+
+                String errorBody = ((HttpException) error).response().errorBody().string();
+                ApiResponse response = gson.fromJson(errorBody,ApiResponse.class);
+                Log.d("ERROR", "handleError: "+response.getMessage());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+
+        }
     }
 }

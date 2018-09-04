@@ -1,6 +1,7 @@
 package com.bmt.zicreative.maidas.booking.service;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -84,6 +85,7 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
             setItemIdList();
             Intent i = new Intent(ServiceActivity.this, DetailActivity.class);
             Log.d("DEBUG","Data From Adapter : "+checkedItem.size());
+            i.putExtra("PRODUCT", (Serializable) checkedItem);
             i.putStringArrayListExtra("serviceItem", itemIdList);
             i.putExtra("barberId", p.getStringExtra("barberId"));
             i.putExtra("shopId", p.getStringExtra("shopId"));

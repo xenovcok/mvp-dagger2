@@ -20,7 +20,7 @@ public class NetworkModule {
     @Singleton
     HttpLoggingInterceptor provideLoggingInterceptor() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.NONE);
+                .setLevel(HttpLoggingInterceptor.Level.BODY);
 
         return logging;
     }

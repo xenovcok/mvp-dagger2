@@ -3,14 +3,21 @@ package com.bmt.zicreative.maidas.booking.detail;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.models.Product;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -25,9 +32,23 @@ import dagger.android.AndroidInjection;
 public class DetailActivity extends BaseActivity implements DetailContract.View {
 
     OrderModel data;
+    Intent a;
+    List<Product> productList;
+    DetailListItemAdapter adapter;
+
+    int total;
 
     @Inject
     DetailPresenter detailPresenter;
+
+    @BindView(R.id.detail_item_list)
+    RecyclerView rvDetailItemList;
+
+    @BindView(R.id.tvDetailSubTotal)
+    TextView tvSubTotal;
+
+    @BindView(R.id.tvDetailTotal)
+    TextView tvTotalBayar;
 
     @BindView(R.id.btn_detail_proses)
     TextView btnProses;
@@ -47,25 +68,45 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         AndroidInjection.inject(this);
         showBackIconToolbar(true);
         setTitleToolbar("Confirm Booking");
+        initRecycleViewManager();
+        initData();
         btnProses.setOnClickListener(view -> {
-            Intent a = getIntent();
             data = new OrderModel();
-            data.setTotal((a.getStringExtra("total")));
+            data.setTotal(String.valueOf(a.getIntExtra("total", 0)));
+            data.setUserId("andi@gmail.com");
+            data.setCreatedAt(String.valueOf(new Date()));
             data.setBarbermanId(a.getStringExtra("barberId"));
             data.setHeldDate(a.getStringExtra("bookingDate"));
-            data.setProcessedAt("");
+            //data.setProcessedAt("");
             data.setBookId("BOOK-"+genBookId());
-            data.setStatus("Not Done");
-            data.setUserId("andi@gmail.com");
+            //data.setStatus("Not Done");
+
             data.setProductId(a.getStringArrayListExtra("serviceItem"));
-            data.setCreatedAt(String.valueOf(new Date()));
+
 
             Log.d("DEBUG", "Total: "+a.getIntExtra("total", 0));
             Log.d("DEBUG", "BarbermanId: "+a.getStringExtra("barberId"));
             Log.d("DEBUG", "HeldDate: "+a.getStringExtra("bookingDate"));
             Log.d("DEBUG", "Product Size: "+a.getStringArrayListExtra("serviceItem"));
-            //detailPresenter.sendData(data);
+            Log.d("DEBUG", "Obj : "+data.getBookId());
+            detailPresenter.sendData(data);
         });
+    }
+
+    private void initData() {
+        a = getIntent();
+        productList = (List<Product>) a.getSerializableExtra("PRODUCT");
+        total = a.getIntExtra("total", 0);
+
+        initView();
+    }
+
+    private void initView() {
+        adapter = new DetailListItemAdapter(DetailActivity.this, productList);
+        rvDetailItemList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        tvSubTotal.setText(String.valueOf("Rp. "+total));
+        tvTotalBayar.setText(String.valueOf("Rp. "+(total+2000)));
     }
 
     private void showConfirmation(OrderModel data) {
@@ -91,6 +132,10 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
     @Override
     public BasePresenter attachPresenter() {
         return detailPresenter;
+    }
+
+    private void initRecycleViewManager() {
+        rvDetailItemList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private String genBookId() {

@@ -4,10 +4,15 @@ package com.bmt.zicreative.maidas.models;
  * Created By Herwin DJ on 8/9/2018
  **/
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     @SerializedName("_id")
     @Expose
