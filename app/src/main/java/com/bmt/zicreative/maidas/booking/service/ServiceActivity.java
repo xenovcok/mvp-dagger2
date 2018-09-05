@@ -7,11 +7,13 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.booking.avaliability.AvailabilityActivity;
 import com.bmt.zicreative.maidas.booking.detail.DetailActivity;
 import com.bmt.zicreative.maidas.models.Product;
 
@@ -54,6 +56,18 @@ public class ServiceActivity extends BaseActivity implements ServiceContract.Vie
     @Override
     public int getLayout() {
         return R.layout.activity_service;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == android.R.id.home) {
+            startActivity(new Intent(ServiceActivity.this, AvailabilityActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -28,6 +28,9 @@ public interface ShopService {
     @GET("orderlist/{year}/{month}/{day}/day")
     Observable<List<BookingOrder>> getOrderByDay(@Path("year") String year, @Path("month") String month, @Path("day") String day);
 
+    @GET("orderlist/{id}/me")
+    Observable<List<BookingOrder>> getOrderByUserId(@Path("id") String userId);
+
     @GET("products")
     Observable<List<Product>> getAllProducts();
 

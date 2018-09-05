@@ -13,6 +13,8 @@ import com.bmt.zicreative.maidas.booking.service.ItemServiceModule;
 import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
 import com.bmt.zicreative.maidas.github.GithubActivity;
 import com.bmt.zicreative.maidas.github.GithubModule;
+import com.bmt.zicreative.maidas.history.HistoryActivity;
+import com.bmt.zicreative.maidas.history.HistoryModule;
 import com.bmt.zicreative.maidas.main.MainActivity;
 
 import dagger.Module;
@@ -41,4 +43,7 @@ public abstract  class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {NetworkModule.class, DetailModule.class})
     abstract DetailActivity bindDetailActivity();
+
+    @ContributesAndroidInjector(modules = {NetworkModule.class, HistoryModule.class})
+    abstract HistoryActivity bindHistoryActivity();
 }

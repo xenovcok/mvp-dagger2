@@ -7,12 +7,14 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
 import com.bmt.zicreative.maidas.models.Product;
 
 import java.io.Serializable;
@@ -53,12 +55,25 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
     @BindView(R.id.tvDetailTotal)
     TextView tvTotalBayar;
 
+    @BindView(R.id.tvPajak)
+    TextView tvPajak;
+
     @BindView(R.id.btn_detail_proses)
     TextView btnProses;
 
     @Override
     protected void bindData() {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == android.R.id.home) {
+            startActivity(new Intent(DetailActivity.this, ServiceActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -75,7 +90,7 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         initData();
         btnProses.setOnClickListener(view -> {
             data = new OrderModel();
-            data.setTotal(String.valueOf(a.getIntExtra("total", 0)));
+            data.setTotal(String.valueOf(total+(total*0.1)));
             data.setUserId("andi@gmail.com");
             data.setCreatedAt(getNowDate());
             data.setBarbermanId(a.getStringExtra("barberId"));
@@ -109,7 +124,8 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         rvDetailItemList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         tvSubTotal.setText(String.valueOf("Rp. "+total));
-        tvTotalBayar.setText(String.valueOf("Rp. "+(total+2000)));
+        tvTotalBayar.setText(String.valueOf("Rp. "+(total+(total/10))));
+        tvPajak.setText(String.valueOf("Rp. "+(total/10)));
     }
 
     private void showConfirmation(OrderModel data) {
@@ -149,7 +165,7 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
 
     private String getNowDate() {
         TimeZone tz = TimeZone.getTimeZone("UTC");
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         df.setTimeZone(tz);
         return df.format(new Date());
     }

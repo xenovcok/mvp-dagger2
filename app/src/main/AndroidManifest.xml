@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bmt.zicreative.maidas">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".PullmanApplication"
@@ -18,28 +19,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".github.GithubActivity">
-        </activity>
+        <activity android:name=".github.GithubActivity"></activity>
         <activity
             android:name=".booking.BookingActivity"
-            android:label="@string/title_activity_booking">
-        </activity>
+            android:label="@string/title_activity_booking"></activity>
         <activity
             android:name=".booking.barberman.BarberActivity"
-            android:label="BarberActivity">
-        </activity>
+            android:label="BarberActivity"></activity>
         <activity
             android:name=".booking.avaliability.AvailabilityActivity"
-            android:label="AvailabilityActivity">
-        </activity>
+            android:label="AvailabilityActivity"></activity>
         <activity
             android:name=".booking.service.ServiceActivity"
-            android:label="ServiceActivity">
-        </activity>
+            android:label="ServiceActivity"></activity>
         <activity
             android:name=".booking.detail.DetailActivity"
-            android:label="DetailActivity">
-        </activity>
+            android:label="DetailActivity"></activity>
+        <activity android:name=".history.HistoryActivity"></activity>
     </application>
 
 </manifest>

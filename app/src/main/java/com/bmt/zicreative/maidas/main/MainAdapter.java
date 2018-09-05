@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.booking.BookingActivity;
 import com.bmt.zicreative.maidas.github.GithubActivity;
+import com.bmt.zicreative.maidas.history.HistoryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                         context.startActivity(new Intent(context, GithubActivity.class));
                         break;
                     case 2 :
-                        context.startActivity(new Intent(context, GithubActivity.class));
+                        context.startActivity(new Intent(context, HistoryActivity.class));
                         break;
                     case 3 :
                         context.startActivity(new Intent(context, BookingActivity.class));

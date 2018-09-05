@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.booking.barberman.BarberActivity;
 import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
 import com.bmt.zicreative.maidas.models.BookingOrder;
 import com.google.gson.internal.bind.util.ISO8601Utils;
@@ -101,6 +103,17 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == android.R.id.home) {
+            startActivity(new Intent(AvailabilityActivity.this, BarberActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void setup() {
         AndroidInjection.inject(this);
         showBackIconToolbar(true);
@@ -112,8 +125,6 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
             onClickPopup();
         });
     }
-
-
 
     private void disableButton(AppCompatButton btn) {
         btn.setEnabled(false);
@@ -130,11 +141,11 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         disableButton(findViewById(R.id.btn1));
         btn1.setOnClickListener(view -> {
             Intent i = new Intent(AvailabilityActivity.this, ServiceActivity.class);
-            Log.d("DEBUG", "saved Booking date : "+saveBookingDate.substring(0, 10)+"T10:00:000Z");
+            Log.d("DEBUG", "saved Booking date : "+saveBookingDate.substring(0, 10)+"T10:00:00.000Z");
             Intent p = getIntent();
             Log.d("DEBUG", "shopId: "+p.getStringExtra("shopId"));
             i.putExtra("shopId", p.getStringExtra("shopId"));
-            i.putExtra("bookingDate", saveBookingDate.substring(0, 10)+"T10:00:000Z");
+            i.putExtra("bookingDate", saveBookingDate.substring(0, 10)+"T10:00:00.000Z");
             i.putExtra("barberId", p.getStringExtra("barberId"));
             startActivity(i);
         });

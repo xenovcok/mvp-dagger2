@@ -1,13 +1,17 @@
 package com.bmt.zicreative.maidas.booking;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.booking.avaliability.AvailabilityActivity;
+import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
 import com.bmt.zicreative.maidas.main.MainActivity;
 
 import java.util.ArrayList;
@@ -39,6 +43,17 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
     @Override
     public int getLayout() {
         return R.layout.activity_booking;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == android.R.id.home) {
+            startActivity(new Intent(BookingActivity.this, MainActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
