@@ -15,6 +15,7 @@ import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.booking.BookingActivity;
 import com.bmt.zicreative.maidas.github.GithubActivity;
 import com.bmt.zicreative.maidas.history.HistoryActivity;
+import com.bmt.zicreative.maidas.service.BarberServiceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                         context.startActivity(new Intent(context, BookingActivity.class));
                         break;
                     case 4 :
-                        context.startActivity(new Intent(context, GithubActivity.class));
+                        context.startActivity(new Intent(context, BarberServiceActivity.class));
                         break;
                     case 5 :
                         context.startActivity(new Intent(context, GithubActivity.class));

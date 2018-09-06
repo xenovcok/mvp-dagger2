@@ -16,6 +16,8 @@ import com.bmt.zicreative.maidas.github.GithubModule;
 import com.bmt.zicreative.maidas.history.HistoryActivity;
 import com.bmt.zicreative.maidas.history.HistoryModule;
 import com.bmt.zicreative.maidas.main.MainActivity;
+import com.bmt.zicreative.maidas.service.BarberServiceActivity;
+import com.bmt.zicreative.maidas.service.BarberServiceModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -46,4 +48,7 @@ public abstract  class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {NetworkModule.class, HistoryModule.class})
     abstract HistoryActivity bindHistoryActivity();
+
+    @ContributesAndroidInjector(modules = {NetworkModule.class, BarberServiceModule.class})
+    abstract BarberServiceActivity bindBarberServiceActivity();
 }

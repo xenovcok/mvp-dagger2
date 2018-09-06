@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.Utils.DateConverterUtils;
 import com.bmt.zicreative.maidas.models.BookingOrder;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.zip.Inflater;
@@ -29,6 +32,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     public HistoryListAdapter(List<BookingOrder> dataList, Context context) {
         this.dataList = dataList;
         this.context = context;
+        //this.datefx = new DateConverterUtils();
     }
 
     @NonNull
@@ -42,8 +46,9 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         holder.tvHistoryBarberman.setText(dataList.get(position).getBarbermanId());
-        holder.tvHistoryBookDate.setText(dataList.get(position).getBookForDate());
+        holder.tvHistoryBookDate.setText(String.valueOf(DateConverterUtils.standartDateFormatter(dataList.get(position).getBookForDate())));
         holder.tvHistoryBookId.setText(dataList.get(position).getBookId());
+        holder.tvHistoryStatus.setText(dataList.get(position).getStatus());
     }
 
     @Override
@@ -61,6 +66,9 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
         @BindView(R.id.tv_history_book_date)
         TextView tvHistoryBookDate;
+
+        @BindView(R.id.tv_history_status)
+        TextView tvHistoryStatus;
 
         public ListViewHolder(View itemView) {
             super(itemView);

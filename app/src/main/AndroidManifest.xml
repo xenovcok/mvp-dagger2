@@ -19,23 +19,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".github.GithubActivity"></activity>
+        <activity android:name=".github.GithubActivity" />
         <activity
             android:name=".booking.BookingActivity"
-            android:label="@string/title_activity_booking"></activity>
+            android:label="@string/title_activity_booking" />
         <activity
             android:name=".booking.barberman.BarberActivity"
-            android:label="BarberActivity"></activity>
+            android:label="BarberActivity" />
         <activity
             android:name=".booking.avaliability.AvailabilityActivity"
-            android:label="AvailabilityActivity"></activity>
+            android:label="AvailabilityActivity" />
         <activity
             android:name=".booking.service.ServiceActivity"
-            android:label="ServiceActivity"></activity>
+            android:label="ServiceActivity" />
         <activity
             android:name=".booking.detail.DetailActivity"
-            android:label="DetailActivity"></activity>
-        <activity android:name=".history.HistoryActivity"></activity>
+            android:label="DetailActivity" />
+        <activity android:name=".history.HistoryActivity" />
+        <activity android:name=".service.BarberServiceActivity"></activity>
     </application>
 
 </manifest>
