@@ -151,14 +151,53 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         });
 
         disableButton(findViewById(R.id.btn2));
-        disableButton(findViewById(R.id.btn3));
-        disableButton(findViewById(R.id.btn4));
-        disableButton(findViewById(R.id.btn5));
-        disableButton(findViewById(R.id.btn6));
-        disableButton(findViewById(R.id.btn7));
-        disableButton(findViewById(R.id.btn8));
-        disableButton(findViewById(R.id.btn9));
+        btn2.setOnClickListener(view -> {
+            setBtnProperty("T11:00:00.000Z");
+        });
 
+        disableButton(findViewById(R.id.btn3));
+        btn3.setOnClickListener(view -> {
+            setBtnProperty("T12:00:00.000Z");
+        });
+
+        disableButton(findViewById(R.id.btn4));
+        btn4.setOnClickListener(view -> {
+            setBtnProperty("T13:00:00.000Z");
+        });
+
+        disableButton(findViewById(R.id.btn5));
+        btn5.setOnClickListener(view -> {
+            setBtnProperty("T14:00:00.000Z");
+        });
+
+        disableButton(findViewById(R.id.btn6));
+        btn6.setOnClickListener(view -> {
+            setBtnProperty("T15:00:00.000Z");
+        });
+
+        disableButton(findViewById(R.id.btn7));
+        btn7.setOnClickListener(view -> {
+            setBtnProperty("T16:00:00.000Z");
+        });
+
+        disableButton(findViewById(R.id.btn8));
+        btn8.setOnClickListener(view -> {
+            setBtnProperty("T17:00:00.000Z");
+        });
+
+        disableButton(findViewById(R.id.btn9));
+        btn9.setOnClickListener(view -> {
+            setBtnProperty("T18:00:00.000Z");
+        });
+    }
+
+    private void setBtnProperty(String btnHour) {
+        Intent i = new Intent(AvailabilityActivity.this, ServiceActivity.class);
+        Intent p = getIntent();
+        i.putExtra("shopId", p.getStringExtra("shopId"));
+        i.putExtra("bookingDate", saveBookingDate.substring(0, 10)+btnHour);
+        i.putExtra("barberId", p.getStringExtra("barberId"));
+        startActivity(i);
     }
 
     private void setEnableButton() {
