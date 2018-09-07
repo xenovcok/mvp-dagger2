@@ -15,6 +15,8 @@ import com.bmt.zicreative.maidas.github.GithubActivity;
 import com.bmt.zicreative.maidas.github.GithubModule;
 import com.bmt.zicreative.maidas.history.HistoryActivity;
 import com.bmt.zicreative.maidas.history.HistoryModule;
+import com.bmt.zicreative.maidas.login.LoginActivity;
+import com.bmt.zicreative.maidas.login.LoginModule;
 import com.bmt.zicreative.maidas.main.MainActivity;
 import com.bmt.zicreative.maidas.service.BarberServiceActivity;
 import com.bmt.zicreative.maidas.service.BarberServiceModule;
@@ -51,4 +53,7 @@ public abstract  class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {NetworkModule.class, BarberServiceModule.class})
     abstract BarberServiceActivity bindBarberServiceActivity();
+
+    @ContributesAndroidInjector(modules = {LoginModule.class})
+    abstract LoginActivity bindLoginActivity();
 }
