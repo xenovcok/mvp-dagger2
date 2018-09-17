@@ -13,6 +13,8 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
 public class PullmanApplication extends Application implements HasActivityInjector {
+    private static PullmanApplication instance;
+
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
@@ -20,6 +22,10 @@ public class PullmanApplication extends Application implements HasActivityInject
     public void onCreate() {
         super.onCreate();
         initDagger();
+    }
+
+    public PullmanApplication() {
+        instance = this;
     }
 
     private void initDagger() {
@@ -33,5 +39,9 @@ public class PullmanApplication extends Application implements HasActivityInject
     @Override
     public AndroidInjector<Activity> activityInjector() {
         return activityDispatchingAndroidInjector;
+    }
+
+    public static PullmanApplication getInstace() {
+        return instance;
     }
 }
