@@ -6,7 +6,8 @@ package com.bmt.zicreative.maidas.login;
 
 public interface LoginContract {
     interface View {
-
+        void onLoginFailed(String message);
+        void onLoginSuccess();
     }
 
     interface Presenter {
