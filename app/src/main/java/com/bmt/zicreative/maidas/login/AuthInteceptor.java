@@ -36,9 +36,17 @@ public class AuthInteceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
-        Request.Builder builder = original.newBuilder()
-                .addHeader("Authorization",loginAuthHeader)
-                .method(original.method(),original.body());
-        return chain.proceed(builder.build());
+        if (original.url().encodedPath().equals("/api/oauth/token")) {
+            return chain.proceed(original.newBuilder()
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .header("Authorization", loginAuthHeader)
+                    .build());
+        }  else if (authenticationUtil.getCurrentAuthenticate() != null) {
+            return chain.proceed(original.newBuilder()
+                    .header("Authorization", "Bearer " + authenticationUtil.getCurrentAuthenticate().getAccessToken())
+                    .build());
+        } else {
+            return chain.proceed(original);
+        }
     }
 }
