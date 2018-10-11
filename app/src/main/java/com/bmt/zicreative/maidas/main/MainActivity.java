@@ -2,10 +2,12 @@ package com.bmt.zicreative.maidas.main;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bumptech.glide.Glide;
@@ -17,6 +19,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import dagger.android.AndroidInjection;
 
 public class MainActivity extends BaseActivity {
 
@@ -34,12 +37,23 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                Log.d("DEBUG", "onOptionsItemSelected: "+item.getItemId());
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public int getLayout() {
         return R.layout.main_activity;
     }
 
     @Override
     public void setup() {
+        AndroidInjection.inject(this);
         showMenuIconToolbar();
         setTitleToolbar("Pullman Barbershop");
 

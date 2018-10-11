@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     private Unbinder unbinder;
+
 
     @Override
     public void onBackPressed() {
@@ -124,4 +128,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 }

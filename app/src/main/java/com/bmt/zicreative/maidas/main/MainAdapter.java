@@ -2,6 +2,7 @@ package com.bmt.zicreative.maidas.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.booking.BookingActivity;
 import com.bmt.zicreative.maidas.github.GithubActivity;
 import com.bmt.zicreative.maidas.history.HistoryActivity;
+import com.bmt.zicreative.maidas.profile.ProfileActivity;
 import com.bmt.zicreative.maidas.service.BarberServiceActivity;
 
 import java.util.ArrayList;
@@ -57,7 +59,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             public void onClick(View view) {
                 switch (position) {
                     case 0 :
-                        context.startActivity(new Intent(context, GithubActivity.class));
+                        context.startActivity(new Intent(context, ProfileActivity.class));
                         break;
                     case 1 :
                         context.startActivity(new Intent(context, GithubActivity.class));

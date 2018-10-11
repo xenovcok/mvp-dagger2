@@ -10,10 +10,13 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import javax.inject.Singleton;
+
 /**
  * Created By Herwin DJ on 9/17/2018
  **/
 
+@Singleton
 public class AuthenticationUtil {
     private static String AUTHENTICATION = "AUTHENTICATION";
 
@@ -45,5 +48,12 @@ public class AuthenticationUtil {
         }
 
         return null;
+    }
+
+    public void logout() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PullmanApplication.getInstace());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(AUTHENTICATION);
+        editor.apply();
     }
 }

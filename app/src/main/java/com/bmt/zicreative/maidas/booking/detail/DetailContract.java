@@ -6,7 +6,7 @@ package com.bmt.zicreative.maidas.booking.detail;
 
 public interface DetailContract {
     interface View {
-
+        void onSuccess();
     }
 
     interface Presenter {

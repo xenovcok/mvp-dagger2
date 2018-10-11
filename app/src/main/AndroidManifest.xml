@@ -38,6 +38,9 @@
             android:name=".booking.detail.DetailActivity"
             android:label="DetailActivity" />
         <activity android:name=".history.HistoryActivity" />
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:label="ProfileActivity" />
         <activity android:name=".service.BarberServiceActivity"></activity>
     </application>
 

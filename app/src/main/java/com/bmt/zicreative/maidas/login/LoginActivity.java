@@ -84,7 +84,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void onLoginFailed(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Login Gagal",Toast.LENGTH_LONG).show();
+        btnLogin.setVisibility(View.VISIBLE);
     }
 
     @Override

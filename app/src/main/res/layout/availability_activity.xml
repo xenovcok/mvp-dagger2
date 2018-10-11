@@ -20,8 +20,9 @@
    <android.support.v7.widget.AppCompatEditText
        android:id="@+id/tv_avai_date"
        android:layout_width="match_parent"
-       android:layout_height="32dp"
-       android:textSize="29px"
+       android:layout_marginTop="5dp"
+       android:layout_height="38dp"
+       android:textSize="14px"
        android:padding="7dip"
        android:focusable="false"
        android:hint="Pilih tanggal"/>
@@ -47,7 +48,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn1"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 10.00"
                 android:textColor="@color/white"
@@ -56,7 +57,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn2"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 11.00"
                 android:textColor="@color/white"
@@ -65,7 +66,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn3"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 12.00"
                 android:textColor="@color/white"
@@ -74,7 +75,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn4"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 13.00"
                 android:textColor="@color/white"
@@ -83,7 +84,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn5"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 14.00"
                 android:textColor="@color/white"
@@ -92,7 +93,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn6"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 15.00"
                 android:textColor="@color/white"
@@ -101,7 +102,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn7"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 16.00"
                 android:textColor="@color/white"
@@ -110,7 +111,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn8"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 17.00"
                 android:textColor="@color/white"
@@ -119,7 +120,7 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn9"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_margin="5dp"
                 android:text="Jam 18.00"
                 android:textColor="@color/white"

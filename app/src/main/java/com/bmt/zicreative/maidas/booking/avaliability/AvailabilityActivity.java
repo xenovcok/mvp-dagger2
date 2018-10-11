@@ -140,14 +140,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
         disableButton(findViewById(R.id.btn1));
         btn1.setOnClickListener(view -> {
-            Intent i = new Intent(AvailabilityActivity.this, ServiceActivity.class);
-            Log.d("DEBUG", "saved Booking date : "+saveBookingDate.substring(0, 10)+"T10:00:00.000Z");
-            Intent p = getIntent();
-            Log.d("DEBUG", "shopId: "+p.getStringExtra("shopId"));
-            i.putExtra("shopId", p.getStringExtra("shopId"));
-            i.putExtra("bookingDate", saveBookingDate.substring(0, 10)+"T10:00:00.000Z");
-            i.putExtra("barberId", p.getStringExtra("barberId"));
-            startActivity(i);
+            setBtnProperty("T10:00:00.000Z");
         });
 
         disableButton(findViewById(R.id.btn2));
@@ -215,31 +208,31 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
 
     private void setUIButton(int tgl) {
         switch (tgl) {
-            case 3:
+            case 10:
                 disableButton(findViewById(R.id.btn1));
                 break;
-            case 4:
+            case 11:
                 disableButton(findViewById(R.id.btn2));
                 break;
-            case 5:
+            case 0:
                 disableButton(findViewById(R.id.btn3));
                 break;
-            case 6:
+            case 1:
                 disableButton(findViewById(R.id.btn4));
                 break;
-            case 7:
+            case 2:
                 disableButton(findViewById(R.id.btn5));
                 break;
-            case 8:
+            case 3:
                 disableButton(findViewById(R.id.btn6));
                 break;
-            case 9:
+            case 4:
                 disableButton(findViewById(R.id.btn7));
                 break;
-            case 10:
+            case 5:
                 disableButton(findViewById(R.id.btn8));
                 break;
-            case 11:
+            case 6:
                 disableButton(findViewById(R.id.btn9));
                 break;
         }
@@ -266,7 +259,9 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
                     Calendar tempCalendar = new GregorianCalendar();
                     tempCalendar.setTime(tempDate);
 
-                    if(tempCalendar.get(Calendar.MONTH) < 10) {
+                    if(tempCalendar.get(Calendar.MONTH) == 9) {
+                        bookMonth = String.valueOf(tempCalendar.get(Calendar.MONTH)+1);
+                    }else if(tempCalendar.get(Calendar.MONTH) < 10) {
                         bookMonth = "0"+String.valueOf(tempCalendar.get(Calendar.MONTH)+1);
                     }else{
                         bookMonth = String.valueOf(tempCalendar.get(Calendar.MONTH));
@@ -345,59 +340,4 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
         calendar.setTime(now);
         return calendar;
     }
-
-    /*
-    private Calendar dateToCalendar (String date) {
-        Calendar c = new GregorianCalendar();
-        c.setTime(ISO8601formatter(date));
-        return c;
-    }
-
-    private Date ISO8601formatter(String input) {
-        Date parsed = new Date();
-        try {
-             parsed = ISO8601Utils.parse(input, new ParsePosition(0));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return parsed;
-    }
-    */
-
-    /*
-    private String monthParser(String month) {
-        String parsed = "";
-        switch (month) {
-            case "1" :
-                parsed = "01";
-                break;
-            case "2" :
-                parsed = "02";
-                break;
-            case "3" :
-                parsed = "03";
-                break;
-            case "4" :
-                parsed = "04";
-                break;
-            case "5" :
-                parsed = "05";
-                break;
-            case "6" :
-                parsed = "06";
-                break;
-            case "7" :
-                parsed = "07";
-                break;
-            case "8" :
-                parsed = "08";
-                break;
-            case "9" :
-                parsed = "09";
-                break;
-        }
-
-        return parsed;
-    }
-    */
 }

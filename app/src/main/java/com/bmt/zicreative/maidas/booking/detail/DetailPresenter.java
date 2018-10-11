@@ -46,6 +46,7 @@ public class DetailPresenter extends BasePresenter implements DetailContract.Pre
 
     private void handleResponse(ApiResponse apiResponse) {
         Log.d("DEBUG", "Response: "+apiResponse.getMessage());
+        view.onSuccess();
     }
 
     private void handleError(Throwable error) {

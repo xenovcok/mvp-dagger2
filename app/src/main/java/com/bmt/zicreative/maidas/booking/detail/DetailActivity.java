@@ -15,6 +15,7 @@ import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
+import com.bmt.zicreative.maidas.history.HistoryActivity;
 import com.bmt.zicreative.maidas.models.Product;
 
 import java.io.Serializable;
@@ -168,5 +169,11 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         df.setTimeZone(tz);
         return df.format(new Date());
+    }
+
+    @Override
+    public void onSuccess() {
+        Intent intent = new Intent(DetailActivity.this, HistoryActivity.class);
+        startActivity(intent);
     }
 }
