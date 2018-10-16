@@ -67,7 +67,7 @@ public class BarberActivity extends BaseActivity implements BarberContract.View 
     @Override
     public void onGetDataSuccess(List<Barber> barber) {
         this.barberList.addAll(barber);
-        Log.d("BARBER DATA : ", this.barberList.get(1).getName());
+        //Log.d("BARBER DATA : ", this.barberList.get(1).getName());
         initAdapter();
     }
 

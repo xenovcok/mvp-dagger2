@@ -81,7 +81,7 @@ public class BookingActivity extends BaseActivity implements BookingContract.Vie
 
     @Override
     public void onLoadData(List<BarbershopModel> barbershopModel) {
-        Log.d("tes data", barbershopModel.get(1).getName());
+        //Log.d("tes data", barbershopModel.get(1).getName());
         this.barbershopModels.addAll(barbershopModel);
         initAdapter(barbershopModel);
     }
