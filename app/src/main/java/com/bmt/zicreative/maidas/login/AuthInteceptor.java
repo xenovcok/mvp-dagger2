@@ -18,8 +18,8 @@ import okhttp3.Response;
  **/
 
 public class AuthInteceptor implements Interceptor {
-    private static String CLIENT_ID = "eac42d28eca0160b0b4cc3b6aa9e79ed";
-    private static String CLIENT_SECRET = "ca41e4d84baf93fde381e16079e97583f2e18aedff1d8e4abe314b9ff583f727";
+    private static String CLIENT_ID = "ab3281e3e92be1299be23087b6c8c429";
+    private static String CLIENT_SECRET = "a2dc22a818f8cd4003b61074480edbfd86d9246bc6958cca4ed9ed0872f54762";
     private String loginAuthHeader;
     private AuthenticationUtil authenticationUtil;
 
