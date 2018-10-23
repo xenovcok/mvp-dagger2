@@ -30,4 +30,10 @@ public class ServiceModule {
     public LoginService provideLoginService(Retrofit retrofit) {
         return retrofit.create(LoginService.class);
     }
+
+    @Provides
+    @Singleton
+    public UserService provideUserService(Retrofit retrofit) {
+        return retrofit.create(UserService.class);
+    }
 }

@@ -20,6 +20,8 @@ import com.bmt.zicreative.maidas.login.LoginModule;
 import com.bmt.zicreative.maidas.main.MainActivity;
 import com.bmt.zicreative.maidas.profile.ProfileActivity;
 import com.bmt.zicreative.maidas.profile.ProfileModule;
+import com.bmt.zicreative.maidas.register.RegisterActivity;
+import com.bmt.zicreative.maidas.register.RegisterModule;
 import com.bmt.zicreative.maidas.service.BarberServiceActivity;
 import com.bmt.zicreative.maidas.service.BarberServiceModule;
 
@@ -61,4 +63,7 @@ public abstract  class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {ProfileModule.class})
     abstract ProfileActivity bindProfileActivity();
+
+    @ContributesAndroidInjector(modules = {RegisterModule.class})
+    abstract RegisterActivity bindRegisterActivity();
 }

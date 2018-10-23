@@ -14,6 +14,7 @@ import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.main.MainActivity;
+import com.bmt.zicreative.maidas.register.RegisterActivity;
 
 import javax.inject.Inject;
 
@@ -48,7 +49,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     protected void bindData() {
         txtDaftar.setOnClickListener(view -> {
-            Toast.makeText(this,"Ke Activity Daftar", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+            finish();
+            //Toast.makeText(this,"Ke Activity Daftar", Toast.LENGTH_LONG).show();
         });
     }
 

@@ -31,10 +31,16 @@
                 android:layout_height="wrap_content"
                 android:text="Dehni" />
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#c0c0c0"/>
+
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_history_book_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="10dp"
                 android:text="2018-12-12-01:24:1991"/>
 
         </android.support.v7.widget.LinearLayoutCompat>
@@ -44,7 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Done"
-            android:textColor="@color/green"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"/>
 
     </android.support.v7.widget.LinearLayoutCompat>

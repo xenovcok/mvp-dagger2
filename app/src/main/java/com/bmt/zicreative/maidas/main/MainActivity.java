@@ -1,11 +1,14 @@
 package com.bmt.zicreative.maidas.main;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bmt.zicreative.maidas.PullmanApplication;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
 import com.bmt.zicreative.maidas.base.BaseActivity;
