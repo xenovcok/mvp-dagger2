@@ -1,31 +1,51 @@
 package com.bmt.zicreative.maidas.models;
 
 public class User {
-    public String firstName;
-    public String lastName;
-    public String phone;
+    public String userName;
+    public String password;
+    public String email;
     public String role;
 
-    public User(String firstName, String lastName, String phone, String role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
+    public User(String userName, String password, String email, String role, String name) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
         this.role = role;
     }
 
-    public String getPhone() {
-        return phone;
+    public User() {
+
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRole() {
         return role;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
