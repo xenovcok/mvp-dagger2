@@ -12,10 +12,14 @@ import android.widget.Adapter;
 import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
+import com.bmt.zicreative.maidas.Utils.TokenUtil;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.booking.service.ServiceActivity;
 import com.bmt.zicreative.maidas.history.HistoryActivity;
+import com.bmt.zicreative.maidas.models.AuthTokenPayload;
+import com.bmt.zicreative.maidas.models.Authenticate;
 import com.bmt.zicreative.maidas.models.Product;
 
 import java.io.Serializable;
@@ -43,6 +47,9 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
     DetailListItemAdapter adapter;
 
     int total;
+
+    @Inject
+    AuthenticationUtil authenticationUtil;
 
     @Inject
     DetailPresenter detailPresenter;
@@ -92,7 +99,7 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         btnProses.setOnClickListener(view -> {
             data = new OrderModel();
             data.setTotal(String.valueOf(total+(total*0.1)));
-            data.setUserId("andi@gmail.com");
+            data.setUserId(getCurrentUserEmail());
             data.setCreatedAt(getNowDate());
             data.setBarbermanId(a.getStringExtra("barberId"));
             data.setHeldDate(a.getStringExtra("bookingDate"));
@@ -175,5 +182,12 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
     public void onSuccess() {
         Intent intent = new Intent(DetailActivity.this, HistoryActivity.class);
         startActivity(intent);
+    }
+
+    private String getCurrentUserEmail() {
+        Authenticate a = authenticationUtil.getCurrentAuthenticate();
+        String token = a.getAccessToken();
+        AuthTokenPayload usr = TokenUtil.toJsonObject(token);
+        return usr.getEmail();
     }
 }

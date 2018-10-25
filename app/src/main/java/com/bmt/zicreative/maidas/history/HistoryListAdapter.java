@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.Utils.DateConverterUtils;
+import com.bmt.zicreative.maidas.api.UserService;
 import com.bmt.zicreative.maidas.models.BookingOrder;
 
 import org.w3c.dom.Text;
@@ -28,6 +29,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     private List<BookingOrder> dataList;
     private Context context;
+    private UserService userService;
 
     public HistoryListAdapter(List<BookingOrder> dataList, Context context) {
         this.dataList = dataList;

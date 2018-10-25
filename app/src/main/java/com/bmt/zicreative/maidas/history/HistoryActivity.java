@@ -3,16 +3,22 @@ package com.bmt.zicreative.maidas.history;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.Toolbar;
 
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
+import com.bmt.zicreative.maidas.Utils.TokenUtil;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.booking.BookingActivity;
 import com.bmt.zicreative.maidas.main.MainActivity;
+import com.bmt.zicreative.maidas.models.AuthTokenPayload;
+import com.bmt.zicreative.maidas.models.Authenticate;
 import com.bmt.zicreative.maidas.models.BookingOrder;
+import com.bmt.zicreative.maidas.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +32,9 @@ public class HistoryActivity extends BaseActivity implements HistoryContract.Vie
 
     HistoryListAdapter adapter;
     List<BookingOrder> bookingOrderList;
+
+    @Inject
+    AuthenticationUtil authenticationUtil;
 
     @Inject
     HistoryPresenter historyPresenter;
@@ -70,7 +79,8 @@ public class HistoryActivity extends BaseActivity implements HistoryContract.Vie
 
     private void initData() {
         bookingOrderList = new ArrayList<>();
-        historyPresenter.getAllOrder("andi@gmail.com");
+        historyPresenter.getAllOrder(getCurrentUserEmail());
+        Log.d("DEBUG", "initData: "+getCurrentUserEmail());
     }
 
 
@@ -98,6 +108,21 @@ public class HistoryActivity extends BaseActivity implements HistoryContract.Vie
     @Override
     public void onGetDataSuccess(List<BookingOrder> data) {
         this.bookingOrderList.addAll(data);
+        for(int i=0;i< data.size(); i++) {
+            historyPresenter.getBarberman(data.get(i).getBarbermanId());
+        }
         initAdapter();
+    }
+
+    private String getCurrentUserEmail() {
+        Authenticate a = authenticationUtil.getCurrentAuthenticate();
+        String token = a.getAccessToken();
+        AuthTokenPayload usr = TokenUtil.toJsonObject(token);
+        return usr.getEmail();
+    }
+
+    @Override
+    public void onGetNameSuccess(String barbermanName) {
+
     }
 }

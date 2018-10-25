@@ -49,10 +49,10 @@ public abstract  class ActivityBuilder {
     @ContributesAndroidInjector(modules = {NetworkModule.class, ItemServiceModule.class})
     abstract ServiceActivity bindServiceActivity();
 
-    @ContributesAndroidInjector(modules = {NetworkModule.class, DetailModule.class})
+    @ContributesAndroidInjector(modules = {DetailModule.class})
     abstract DetailActivity bindDetailActivity();
 
-    @ContributesAndroidInjector(modules = {NetworkModule.class, HistoryModule.class})
+    @ContributesAndroidInjector(modules = {HistoryModule.class})
     abstract HistoryActivity bindHistoryActivity();
 
     @ContributesAndroidInjector(modules = {NetworkModule.class, BarberServiceModule.class})

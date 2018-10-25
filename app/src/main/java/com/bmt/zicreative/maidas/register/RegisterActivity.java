@@ -1,8 +1,11 @@
 package com.bmt.zicreative.maidas.register;
 
 import android.content.Intent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +47,12 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     @BindView(R.id.register_submit)
     Button btnRegSubmit;
 
+    @BindView(R.id.register_form)
+    ScrollView container;
+
+    @BindView(R.id.register_progress)
+    ProgressBar progressBar;
+
     @Override
     protected void bindData() {
         txtLogin.setOnClickListener(view -> {
@@ -71,6 +80,9 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             user.setName(String.valueOf(etUsername.getText()));
             user.setRole("CUST");
 
+            container.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+
             presenter.addUser(user);
         });
 
@@ -83,7 +95,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
     @Override
     public void onSuccess(String message) {
-        Toast.makeText(this,message, Toast.LENGTH_LONG).show();
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 
     @Override

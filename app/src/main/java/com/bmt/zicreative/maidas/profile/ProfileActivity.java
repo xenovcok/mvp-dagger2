@@ -12,6 +12,7 @@ import com.auth0.android.jwt.JWT;
 import com.bmt.zicreative.maidas.PullmanApplication;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
+import com.bmt.zicreative.maidas.Utils.TokenUtil;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.login.LoginActivity;
@@ -56,21 +57,13 @@ public class ProfileActivity extends BaseActivity implements ProfileContract.Vie
     protected void bindData() {
         Authenticate currentAuthenticate = authenticationUtil.getCurrentAuthenticate();
         token = currentAuthenticate.getAccessToken();
-        AuthTokenPayload usr = toJsonObject(token);
+        AuthTokenPayload usr = TokenUtil.toJsonObject(token);
         //Log.d("DEBUG", "bindData: "+userData.get("name"));
 
         tvName.setText(String.valueOf(usr.getName()));
         tvEmail.setText(String.valueOf(usr.getEmail()));
     }
 
-    private AuthTokenPayload toJsonObject(String token) {
-        String[] part = token.split("\\.");
-        Gson gson = new Gson();
-        String jsonob = new String(Base64.decode(part[1].getBytes(),0));
-        //Log.d("DEBUG", "data : "+jsonob);
-        AuthTokenPayload authTokenPayload = gson.fromJson(jsonob, AuthTokenPayload.class);
-        return authTokenPayload;
-    }
 
     @Override
     public int getLayout() {

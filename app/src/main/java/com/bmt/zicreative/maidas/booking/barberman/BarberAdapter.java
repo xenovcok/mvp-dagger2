@@ -57,7 +57,8 @@ public class BarberAdapter extends RecyclerView.Adapter<BarberAdapter.BarberView
             //showSnackbar(view, String.valueOf(barberList.get(position).getName()));
             Intent a = ((Activity) context).getIntent();
             Intent i = new Intent(context, AvailabilityActivity.class);
-            i.putExtra("barberId", barberList.get(position).getId());
+            i.putExtra("barberId", barberList.get(position).getEmail());
+            //Log.d("DEBUG", "onBindViewHolder: "+barberList.get(position).getEmail());
             i.putExtra("shopId", a.getStringExtra("shop"));
             context.startActivity(i);
         });
