@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.booking.barberman.BarberActivity;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int position) {
         Log.d("data adapter", this.barbershopModel.get(position).getName());
 
-        Glide.with(context).load(this.barbershopModel.get(position).getPhoto()).into(bookViewHolder.ivPhoto);
+        GlideApp.with(context).load(this.barbershopModel.get(position).getPhoto()).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(bookViewHolder.ivPhoto);
         bookViewHolder.itemTitleTv.setText(this.barbershopModel.get(position).getName());
         bookViewHolder.tvDesc.setText(this.barbershopModel.get(position).getDescription());
         bookViewHolder.tvLocation.setText(this.barbershopModel.get(position).getAddress());

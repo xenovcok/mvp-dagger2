@@ -34,7 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="190dp"
@@ -45,9 +46,9 @@
 
             <AutoCompleteTextView
                 android:id="@+id/username"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/tv_transparent_white"
+                android:background="@drawable/login_edittext_custom"
                 android:hint="@string/prompt_username"
                 android:textColorHint="@color/grey"
                 android:textColor="@color/white"
@@ -61,9 +62,9 @@
 
             <AutoCompleteTextView
                 android:id="@+id/email"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/tv_transparent_white"
+                android:background="@drawable/login_edittext_custom"
                 android:hint="@string/prompt_email"
                 android:textColorHint="@color/grey"
                 android:textColor="@color/white"
@@ -78,9 +79,9 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/tv_transparent_white"
+                android:background="@drawable/login_edittext_custom"
                 android:hint="@string/prompt_password"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
@@ -98,7 +99,7 @@
             <Button
                 android:id="@+id/register_submit"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_register"
@@ -126,7 +127,7 @@
                     android:id="@+id/txtLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey"
+                    android:textColor="@color/gold"
                     android:text="Login"/>
 
             </android.support.v7.widget.LinearLayoutCompat>

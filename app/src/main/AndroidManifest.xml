@@ -12,6 +12,12 @@ package="com.bmt.zicreative.maidas">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_icon"
+        android:resource="@drawable/logo" />
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_color"
+        android:resource="@color/gold" />
     <activity android:name=".login.LoginActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -40,10 +46,21 @@ package="com.bmt.zicreative.maidas">
         android:name=".booking.detail.DetailActivity"
         android:label="DetailActivity" />
     <activity android:name=".history.HistoryActivity" />
+    <activity android:name=".inbox.InboxActivity">
+        <intent-filter>
+            <action android:name="INBOXACTIVITY"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+    </activity>
     <activity
         android:name=".profile.ProfileActivity"
         android:label="ProfileActivity" />
     <activity android:name=".service.BarberServiceActivity"></activity>
+    <service android:name=".api.PullmanMessagingService">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
 </application>
 
 </manifest>
