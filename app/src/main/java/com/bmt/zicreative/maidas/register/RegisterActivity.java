@@ -1,6 +1,8 @@
 package com.bmt.zicreative.maidas.register;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,10 +11,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bmt.zicreative.maidas.PullmanApplication;
 import com.bmt.zicreative.maidas.R;
+import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
+import com.bmt.zicreative.maidas.api.PullmanMessagingService;
 import com.bmt.zicreative.maidas.base.BaseActivity;
 import com.bmt.zicreative.maidas.base.BasePresenter;
 import com.bmt.zicreative.maidas.login.LoginActivity;
+import com.bmt.zicreative.maidas.login.LoginPresenter;
 import com.bmt.zicreative.maidas.models.User;
 
 import javax.inject.Inject;
@@ -31,6 +37,9 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
     @Inject
     RegisterPresenter presenter;
+
+    @Inject
+    AuthenticationUtil authenticationUtil;
 
     @BindView(R.id.txtLogin)
     TextView txtLogin;
@@ -95,11 +104,18 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
     @Override
     public void onSuccess(String message) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PullmanApplication.getInstace());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", user.getUserName());
+        editor.putString("password", user.getPassword());
+        editor.apply();
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 
     @Override
     public void onFailure(String message) {
         Toast.makeText(this,message, Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.GONE);
+        container.setVisibility(View.VISIBLE);
     }
 }

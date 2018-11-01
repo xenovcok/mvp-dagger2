@@ -1,8 +1,11 @@
 package com.bmt.zicreative.maidas.register;
 
+import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
 import com.bmt.zicreative.maidas.api.ApiResponse;
 import com.bmt.zicreative.maidas.api.UserService;
 import com.bmt.zicreative.maidas.base.BasePresenter;
+import com.bmt.zicreative.maidas.login.LoginService;
+import com.bmt.zicreative.maidas.models.Authenticate;
 import com.bmt.zicreative.maidas.models.User;
 
 import javax.inject.Inject;
@@ -53,6 +56,5 @@ public class RegisterPresenter extends BasePresenter implements RegisterContract
                         message = apiResponse.getMessage();
                     }
                 });
-
     }
 }

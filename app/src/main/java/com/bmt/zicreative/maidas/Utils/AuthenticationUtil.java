@@ -54,6 +54,8 @@ public class AuthenticationUtil {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PullmanApplication.getInstace());
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove(AUTHENTICATION);
+        editor.remove("username");
+        editor.remove("password");
         editor.apply();
     }
 }

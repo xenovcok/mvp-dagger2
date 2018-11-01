@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">maidas</string>
+    <string name="app_name">Pullman</string>
     <string name="title_activity_booking">BookingActivity</string>
     <string name="prompt_username">User</string>
     <string name="prompt_email">Email</string>

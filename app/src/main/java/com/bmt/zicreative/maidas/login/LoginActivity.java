@@ -2,6 +2,9 @@ package com.bmt.zicreative.maidas.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -9,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bmt.zicreative.maidas.PullmanApplication;
 import com.bmt.zicreative.maidas.R;
 import com.bmt.zicreative.maidas.Utils.AuthenticationUtil;
 import com.bmt.zicreative.maidas.base.BaseActivity;
@@ -27,6 +31,11 @@ import dagger.android.AndroidInjection;
  **/
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {
+
+    private final String TAG = "LoginActivityDebug";
+
+    String user;
+    String pass;
 
     @Inject
     LoginPresenter loginPresenter;
@@ -77,6 +86,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         if (authenticationUtil.getCurrentAuthenticate() != null) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
+        }else if (checkPreferences()){
+            Log.d(TAG, "setup: "+String.valueOf(checkPreferences()));
+            loginPresenter.login(user, pass);
         }
         bindData();
     }
@@ -96,5 +108,16 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void onLoginSuccess() {
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
+    }
+
+    private boolean checkPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PullmanApplication.getInstace());
+        user = sharedPreferences.getString("username",null);
+        pass = sharedPreferences.getString("password", null);
+        if ( user != null && pass != null) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }
