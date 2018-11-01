@@ -247,7 +247,7 @@ public class AvailabilityActivity extends BaseActivity implements AvailabilityCo
                 newDate.set(year, monthOfYear, dayOfMonth);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SimpleDateFormat bookDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                if(calendar.get(Calendar.DAY_OF_MONTH) < dayOfMonth){
+                if(calendar.get(Calendar.DAY_OF_MONTH) > dayOfMonth){
                     Toast.makeText(AvailabilityActivity.this, "Invalid Date", Toast.LENGTH_SHORT).show();
                 }else{
                     etDate.setText(sdf.format(newDate.getTime()));

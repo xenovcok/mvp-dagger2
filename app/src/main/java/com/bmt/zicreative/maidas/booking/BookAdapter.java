@@ -50,7 +50,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int position) {
-        Log.d("data adapter", this.barbershopModel.get(position).getName());
+        Log.d("data adapter", this.barbershopModel.get(position).getPhoto());
 
         GlideApp.with(context).load(this.barbershopModel.get(position).getPhoto()).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(bookViewHolder.ivPhoto);
         bookViewHolder.itemTitleTv.setText(this.barbershopModel.get(position).getName());

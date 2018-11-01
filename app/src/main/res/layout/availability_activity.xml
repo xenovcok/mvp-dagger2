@@ -22,7 +22,7 @@
        android:layout_width="match_parent"
        android:layout_marginTop="5dp"
        android:layout_height="38dp"
-       android:textSize="14px"
+       android:textSize="14dp"
        android:padding="7dip"
        android:focusable="false"
        android:hint="Pilih tanggal"/>

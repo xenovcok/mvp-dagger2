@@ -2,7 +2,7 @@
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?selectableItemBackground"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar"/>
@@ -16,7 +16,9 @@
         android:id="@+id/dashboard_recycleview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:scrollbars="vertical"
+        android:scrollIndicators="none"
+        android:gravity="center_horizontal"
         android:layout_margin="10dp">
 
     </android.support.v7.widget.RecyclerView>
